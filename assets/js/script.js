@@ -1,3 +1,4 @@
+// Game variables
 var question = document.querySelector("#question");
 var choiceCont = document.querySelector("#choice-container");
 var progressText = document.querySelector("#progressText");
@@ -6,42 +7,45 @@ var scoreText = document.querySelector("#score");
 let currentIndex = 0;
 let acceptingAnswers = true;
 let score = 0;
-let questionCounter = 0
+let questionCounter = 0;
 let availableQuestions =[];
 
+// Questions array
 let questions =[
     {
-        question: "What language is used to mark-up webpages?",
+        question: "Which language is used to mark-up webpages?",
         choices: ["HTML", "CSS", "Javascript", "SQL"],
         answer: "HTML"
     },
     {
-        question: "What language is used to mark-up webpages?",
-        choices: ["HTML", "CSS", "Javascript", "SQL"],
-        answer: "HTML"
+        question: "Which of these is a CSS framework?",
+        choices: ["Sass", "jQuery", "Bootstrap", "Ruby"],
+        answer: "Bootstrap"
     },
     {
-        question: "What language is used to mark-up webpages?",
-        choices: ["HTML", "CSS", "Javascript", "SQL"],
-        answer: "HTML"
+        question: "Which type of brackets are used in a Javascript array?",
+        choices: ["()", "{}", "<>", "[]"],
+        answer: "[]"
     },
     {
-        question: "What language is used to mark-up webpages?",
-        choices: ["HTML", "CSS", "Javascript", "SQL"],
-        answer: "HTML"
+        question: "whatIsThisCalled?",
+        choices: ["Camel case", "A function", "Javascript", "Bad grammar"],
+        answer: "Camel case"
     },
 ];
 
-const SCORE_POINTS = 100;
+const SCORE_POINTS = 10;
 const MAX_QUESTIONS = 4;
 
+// Start game function
 startGame = () => {
-    // questionCounter = 0
-    // score = 0
-    // availableQuestions = [...questions]
+    questionCounter = 0
+    score = 0
+    availableQuestions = [...questions]
     getNewQuestion()
 };
 
+// Function to get and display the question in the array
 getNewQuestion = () => {
     var currentQuestion = questions[currentIndex]
     var question = document.getElementById("question")
@@ -57,14 +61,8 @@ getNewQuestion = () => {
     })
 };
 
+// Check if the question was correct
 function checkQuestion(){};
-
-//increment current question ++
-
-// //- When you store the high scores you will want to use JSON stringify
-// - do the timer
-// - when you press start quiz start a timer right away,
-// - change on click linke 56 do a "checker" you can use if this value != to the choice = wrong
 
 
 incrementScore = num => {
