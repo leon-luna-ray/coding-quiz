@@ -10,30 +10,6 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
-// Questions array
-let questions = [
-  {
-    question: 'Which language is used to mark-up webpages?',
-    choices: ['HTML', 'CSS', 'Javascript', 'SQL'],
-    answer: 'HTML',
-  },
-  {
-    question: 'Which of these is a CSS framework?',
-    choices: ['Sass', 'jQuery', 'Bootstrap', 'Ruby'],
-    answer: 'Bootstrap',
-  },
-  {
-    question: 'Which type of brackets are used in a Javascript array?',
-    choices: ['()', '{}', '<>', '[]'],
-    answer: '[]',
-  },
-  {
-    question: 'whatIsThisCalled?',
-    choices: ['Camel case', 'A function', 'Javascript', 'Bad grammar'],
-    answer: 'Camel case',
-  },
-];
-
 const SCORE_POINTS = 10;
 const MAX_QUESTIONS = 4;
 
