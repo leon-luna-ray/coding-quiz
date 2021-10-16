@@ -10,6 +10,11 @@ const Start = () => {
     localStorage.setItem('coding-quiz-score', 0);
     history.push('/game');
   };
+
+  const viewHighScores = () => {
+    history.push('/high_scores');
+  };
+
   return (
     <div className='container'>
       <div className='flex-row'>
@@ -22,7 +27,11 @@ const Start = () => {
         to={'/game'}
         onClick={startNewGame}
       />
-      <Button id='highscore-btn' text={'High Scores'} to={'/high_scores'} />
+      <Button
+        id='highscore-btn'
+        text={'High Scores'}
+        onClick={viewHighScores}
+      />
     </div>
   );
 };

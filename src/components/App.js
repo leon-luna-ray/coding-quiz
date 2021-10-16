@@ -13,7 +13,7 @@ const App = () => {
   };
 
   return (
-    <main>
+    <main className='app'>
       <Router getUserConfirmation={getUserConfirmation}>
         <Switch>
           <Route path='/' exact component={Start} />
