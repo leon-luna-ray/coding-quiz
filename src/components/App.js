@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Start from './Start';
 import Game from './Game';
+import GameOver from './GameOver';
 import HighScores from './HighScores';
 import '../styles/style.css';
 
@@ -18,6 +19,7 @@ const App = () => {
         <Switch>
           <Route path='/' exact component={Start} />
           <Route path='/game' exact component={Game} />
+          <Route path='/game_over' exact component={GameOver} />
           <Route path='/high_scores' exact component={HighScores} />
         </Switch>
       </Router>

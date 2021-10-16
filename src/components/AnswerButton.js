@@ -1,9 +1,14 @@
 import React from 'react';
-const AnswerButton = ({ prefix, text, onClick }) => {
+const AnswerButton = ({ index, choice, answer, onClick }) => {
   return (
-    <div className='choice-container' onClick={onClick}>
-      <p className='choice-prefix'>{prefix}</p>
-      <p className='choice-text'>{text}</p>
+    <div
+      className='choice-btn'
+      onClick={() => {
+        onClick(choice);
+      }}
+    >
+      <span className='choice-prefix'>{index + 1}. </span>
+      <span className='choice-text'>{choice}</span>
     </div>
   );
 };
