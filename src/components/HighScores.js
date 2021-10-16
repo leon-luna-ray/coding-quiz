@@ -4,10 +4,11 @@ import Button from './Button';
 
 const HighScores = () => {
   let history = useHistory();
-  // Set score to 0 and redirect with useHistory hook
+
   const redirectHome = () => {
     history.push('/');
   };
+
   return (
     <div className='container'>
       <div className='start-panel'>

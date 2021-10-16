@@ -8,6 +8,7 @@ const GameOver = ({ score }) => {
   const redirectHome = () => {
     history.push('/');
   };
+
   return (
     <div className='container'>
       <div className='start-panel'>

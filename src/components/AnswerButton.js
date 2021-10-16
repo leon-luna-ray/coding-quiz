@@ -1,10 +1,10 @@
 import React from 'react';
-const AnswerButton = ({ index, choice, answer, onClick }) => {
+const AnswerButton = ({ index, choice, handleAnswer }) => {
   return (
     <div
       className='choice-btn'
       onClick={() => {
-        onClick(choice);
+        handleAnswer(choice);
       }}
     >
       <span className='choice-prefix'>{index + 1}. </span>
