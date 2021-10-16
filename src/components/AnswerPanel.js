@@ -1,6 +1,5 @@
 import React from 'react';
 import AnswerButton from './AnswerButton';
-import '../styles/game.css';
 
 const AnswerPanel = ({ choices, answer, handleCorrect }) => {
   return (

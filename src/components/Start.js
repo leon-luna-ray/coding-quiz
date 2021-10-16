@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Button from './Button';
-import '../styles/start.css';
 
 const Start = () => {
   let history = useHistory();
@@ -17,21 +16,24 @@ const Start = () => {
 
   return (
     <div className='container'>
-      <div className='flex-row'>
-        <h1>Coding Quiz!</h1>
+      <div className='start-panel'>
+        <div className='start-title'>
+          <h1>Coding Quiz!</h1>
+        </div>
+        <div className='start-btns'>
+          <Button
+            id='start-btn'
+            text={'Start'}
+            to={'/game'}
+            onClick={startNewGame}
+          />
+          <Button
+            id='highscore-btn'
+            text={'High Scores'}
+            onClick={viewHighScores}
+          />
+        </div>
       </div>
-
-      <Button
-        id='start-btn'
-        text={'Start'}
-        to={'/game'}
-        onClick={startNewGame}
-      />
-      <Button
-        id='highscore-btn'
-        text={'High Scores'}
-        onClick={viewHighScores}
-      />
     </div>
   );
 };

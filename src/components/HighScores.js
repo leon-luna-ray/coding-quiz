@@ -9,9 +9,11 @@ const HighScores = () => {
     history.push('/');
   };
   return (
-    <div>
-      <h1>High Scores</h1>
-      <Button id='home-btn' text='Home' onClick={redirectHome} />
+    <div className='container'>
+      <div className='start-panel'>
+        <h1>High Scores</h1>
+        <Button id='home-btn' text='Home' onClick={redirectHome} />{' '}
+      </div>
     </div>
   );
 };

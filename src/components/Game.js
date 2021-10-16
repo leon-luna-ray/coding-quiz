@@ -6,7 +6,6 @@ import AnswerPanel from './AnswerPanel';
 import ScorePanel from './ScorePanel';
 import { useHistory } from 'react-router-dom';
 import questions from './questions';
-import '../styles/game.css';
 
 const Game = () => {
   let history = useHistory();
@@ -35,22 +34,26 @@ const Game = () => {
   };
 
   return (
-    <div className='container game'>
-      <ScorePanel className='score-panel' score={score} />
-      <QuestionPanel
-        className='question-panel'
-        question={currentQuestion.question}
-      />
-      <AnswerPanel
-        className='answer-panel'
-        question={currentQuestion.question}
-        choices={currentQuestion.choices}
-        answer={currentQuestion.answer}
-        handleCorrect={handleCorrect}
-      />
-      <Button id='home-btn' text='Home' onClick={redirectHome} />
-      <Prompt when={gameStarted} message='Are you sure to want to leave?' />
-    </div>
+    <section className='game'>
+      <div className='game-panel'>
+        <ScorePanel className='score-panel' score={score} />
+        {/* <Button id='home-btn' text='Home' onClick={redirectHome} /> */}
+        <br />
+        <QuestionPanel
+          className='question-panel'
+          question={currentQuestion.question}
+        />
+        <AnswerPanel
+          className='answer-panel'
+          question={currentQuestion.question}
+          choices={currentQuestion.choices}
+          answer={currentQuestion.answer}
+          handleCorrect={handleCorrect}
+        />
+
+        <Prompt when={gameStarted} message='Are you sure to want to leave?' />
+      </div>
+    </section>
   );
 };
 
