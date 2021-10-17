@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import QuestionPanel from './QuestionPanel';
+import axios from 'axios';
 import AnswerPanel from './AnswerPanel';
+import QuestionPanel from './QuestionPanel';
 import ScorePanel from './ScorePanel';
 import GameOver from './GameOver';
-import questions from './questions';
+import testQuestions from './questions';
 
 const Game = () => {
   const [score, setScore] = useState(0);
+  const [questions, setQuestions] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   // Current question and score from state
   const userScore = parseInt(localStorage.getItem('coding-quiz-score'));
-  const question = questions[questionIndex].question;
-  const choices = questions[questionIndex].choices;
-  const answer = questions[questionIndex].answer;
+  const question = testQuestions[questionIndex].question;
+  const choices = testQuestions[questionIndex].choices;
+  const answer = testQuestions[questionIndex].answer;
 
   // Avoid resetting score on reload
   useEffect(() => {
     if (userScore) {
       setScore(userScore);
     }
-  }, [userScore]);
+
+    const fetchQuestions = async () => {
+      const questions = await axios.get(
+        'https://quizapi.io/api/v1/questions?apiKey=gpVMgV0KdzCQI3oQBr4a8EGNpc0HnJqPcK2MvVYu&category=code&limit=20'
+      );
+      setQuestions(questions.data);
+      console.log(questions.data);
+    };
+    fetchQuestions();
+  }, []);
 
   // Update local storage on score state change
   useEffect(() => {
@@ -34,9 +45,12 @@ const Game = () => {
     }
     setQuestionIndex(questionIndex + 1);
   };
-
+  // Handle Loading
+  if (questions === null) {
+    return <h1>Start!</h1>;
+  }
   // Handle game over
-  if (questionIndex === questions.length - 1) {
+  if (questionIndex === testQuestions.length - 1) {
     return <GameOver score={score} />;
   }
 
