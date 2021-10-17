@@ -19,7 +19,7 @@ const Game = () => {
     if (userScore) {
       setScore(userScore);
     }
-  }, []);
+  }, [userScore]);
 
   // Update local storage on score state change
   useEffect(() => {
