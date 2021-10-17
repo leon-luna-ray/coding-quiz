@@ -37,15 +37,17 @@ const Game = () => {
   if (loading) {
     return <h1>Start!</h1>;
   }
-  // Handle game over
+  // Handle game over, change to the actual questions array when done testing
   if (questionIndex === testQuestions.length - 1) {
     return <GameOver score={score} />;
   }
   // Game
   const question = questions[questionIndex].question;
-  const choices = testQuestions[questionIndex].choices;
+  const answers = questions[questionIndex].answers;
+  const choices = Object.keys(answers).map((key) => [key, answers[key]]);
   const answer = testQuestions[questionIndex].answer;
 
+  // need to extract answer
   const handleAnswer = (userChoice) => {
     // add additional logic here to show which one is the correct one
     if (userChoice === answer) {

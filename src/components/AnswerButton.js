@@ -1,14 +1,14 @@
 import React from 'react';
-const AnswerButton = ({ index, choice, onClick }) => {
+const AnswerButton = ({ letter, text, onClick }) => {
   return (
     <div
       className='choice-btn'
       onClick={() => {
-        onClick(choice);
+        onClick(text);
       }}
     >
-      <span className='choice-prefix'>{index + 1}. </span>
-      <span className='choice-text'>{choice}</span>
+      <span className='choice-prefix'>{letter + 1}. </span>
+      <span className='choice-text'>{text}</span>
     </div>
   );
 };

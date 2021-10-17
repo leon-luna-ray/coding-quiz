@@ -5,28 +5,20 @@ const AnswerPanel = ({ choices, answer, handleAnswer }) => {
   return (
     <div className='answer-panel'>
       {choices.map((choice, index) => {
-        if (choice === answer) {
-          return (
-            <AnswerButton
-              id='correct-answer'
-              key={index}
-              index={index}
-              choice={choice}
-              answer={answer}
-              onClick={handleAnswer}
-            />
-          );
-        } else {
-          return (
-            <AnswerButton
-              key={index}
-              index={index}
-              choice={choice}
-              answer={answer}
-              onClick={handleAnswer}
-            />
-          );
+        const letter = choice[0];
+        const text = choice[1];
+        if (text === null) {
+          return;
         }
+        return (
+          <AnswerButton
+            key={index}
+            letter={letter}
+            text={text}
+            answer={answer}
+            onClick={handleAnswer}
+          />
+        );
       })}
     </div>
   );
