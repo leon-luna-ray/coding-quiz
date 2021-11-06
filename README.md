@@ -4,7 +4,7 @@
 
 This is a quiz app that will test your coding knowledge!
 
-[🚀 Launch Quiz!](https://leon-luna-ray.github.io/coding-quiz/)
+[🚀 Launch!](https://leon-luna-ray.github.io/coding-quiz/)
 
 ## Table of Contents
 
