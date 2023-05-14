@@ -16,19 +16,20 @@ This is a quiz app that will test your coding knowledge!
 - [Contact](#contact)
 - [Links](#links)
 
+## Technologies
+
+- React.js
+- Javascript
+- Vite.js
+- HTML
+- CSS
+- Fontawesome
+- Google Fonts
+- Netlify
+
 ## Image
 
 ![Screenshot](./assets/coding-quiz.png)
-
-## Technologies
-
-- HTML
-- CSS
-- Javascript
-- React.js
-- Node.js
-- Fontawesome
-- Google Fonts
 
 ## Known-Bugs
 
