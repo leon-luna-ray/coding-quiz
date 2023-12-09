@@ -23,6 +23,7 @@ This is a quiz app that will test your coding knowledge!
 - HTML5
 - Javascript
 - Netlify
+- TailwindCSS
 - Vite.js
 
 ## Image

@@ -1,0 +1,31 @@
+@tailwind utilities;
+
+@layer utilities {
+  .border-red {
+    @apply border-2 border-red-600;
+  }
+  .border-green {
+    @apply border-2 border-green-600;
+  }
+  .border-blue {
+    @apply border-2 border-blue-600;
+  }
+  .page-center {
+    @apply h-screen flex justify-center items-center;
+  }
+  .flex-col-03 {
+    @apply flex flex-col gap-y-[0.3rem];
+  }
+  .flex-col-1 {
+    @apply flex flex-col gap-y-[1rem];
+  }
+  .flex-col-2 {
+    @apply flex flex-col gap-y-[2rem];
+  }
+  .flex-col-3 {
+    @apply flex flex-col gap-y-[3rem];
+  }
+  .flex-col-4 {
+    @apply flex flex-col gap-y-[4rem];
+  }
+}
