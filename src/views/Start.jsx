@@ -15,7 +15,7 @@ const Start = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='container h-screen'>
       <div className='start-panel'>
         <div className='start-title'>
           <h1>Coding Quiz!</h1>

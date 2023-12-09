@@ -1,1 +1,56 @@
 @tailwind base;
+
+@layer base {
+    body {
+        @apply text-[1.25rem] font-[200];
+    }
+
+    a {
+        @apply hover:underline;
+    }
+
+    button,
+    .btn {
+        @apply py-2 px-4 rounded-md;
+    }
+
+    a.btn {
+        @apply hover:!no-underline;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    .h1,
+    .h2,
+    .h3,
+    .h4 {
+        @apply font-[500];
+    }
+
+    h1,
+    .h1 {
+        @apply text-[3.5rem];
+    }
+
+    h2,
+    .h2 {
+        @apply text-[3rem];
+    }
+
+    h3,
+    .h3 {
+        @apply text-[2.5rem];
+    }
+
+    h4,
+    .h4 {
+        @apply text-[1.5rem];
+    }
+
+    h5,
+    .h5 {
+        @apply text-[1rem];
+    }
+}
