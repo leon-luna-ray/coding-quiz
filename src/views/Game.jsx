@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AnswerPanel from './AnswerPanel';
-import QuestionPanel from './QuestionPanel';
-import ScorePanel from './ScorePanel';
-import GameOver from './GameOver';
-import testQuestions from './questions';
+import LoadingScreen from '@/views/LoadingScreen';
+import AnswerPanel from '@/components/AnswerPanel';
+import QuestionPanel from '@/components/QuestionPanel';
+import ScorePanel from '@/components/ScorePanel';
+import GameOver from '@/components/GameOver';
+import testQuestions from '@/lib/questions';
 
 const Game = () => {
   const userScore = parseInt(localStorage.getItem('coding-quiz-score'));
@@ -13,31 +14,38 @@ const Game = () => {
   const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
-  // Avoid resetting score on reload
+
   useEffect(() => {
     if (userScore) {
       setScore(userScore);
     }
-    const fetchQuestions = async () => {
-      const questions = await axios.get(
-        'https://quizapi.io/api/v1/questions?apiKey=gpVMgV0KdzCQI3oQBr4a8EGNpc0HnJqPcK2MvVYu&category=code&limit=20'
-      );
-      setQuestions(questions.data);
-      setLoading(false);
-      console.log(questions.data);
+    const fetchQuestions = async (limit) => {
+      try {
+        const response = await axios.get('https://quizapi.io/api/v1/questions', {
+          headers: {
+            'X-Api-Key': import.meta.env.VITE_QUIZ_API_TOKEN,
+          },
+          params: {
+            limit: limit,
+          },
+        });
+
+        setQuestions(response.data);
+        setLoading(false);
+      } catch (error) {
+      }
     };
     fetchQuestions();
   }, []);
-  // Update local storage on score state change
+
   useEffect(() => {
     localStorage.setItem('coding-quiz-score', score);
   }, [score]);
 
-  // Handle Loading
   if (loading) {
-    return <h1>Start!</h1>;
+    return <LoadingScreen />;
   }
-  // Handle game over, change to the actual questions array when done testing
+
   if (questionIndex === testQuestions.length - 1) {
     return <GameOver score={score} />;
   }
@@ -47,9 +55,7 @@ const Game = () => {
   const choices = Object.keys(answers).map((key) => [key, answers[key]]);
   const answer = testQuestions[questionIndex].answer;
 
-  // need to extract answer
   const handleAnswer = (userChoice) => {
-    // add additional logic here to show which one is the correct one
     if (userChoice === answer) {
       setScore(score + 1);
       setQuestionIndex(questionIndex + 1);
@@ -58,7 +64,7 @@ const Game = () => {
   };
 
   return (
-    <section className='game'>
+    <main className='game container'>
       <div className='game-panel'>
         <ScorePanel className='score-panel' score={score} />
         <QuestionPanel className='question-panel' question={question} />
@@ -69,7 +75,7 @@ const Game = () => {
           handleAnswer={handleAnswer}
         />
       </div>
-    </section>
+    </main>
   );
 };
 

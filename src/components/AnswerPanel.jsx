@@ -1,5 +1,5 @@
 import React from 'react';
-import AnswerButton from './AnswerButton';
+import AnswerButton from '@/components/AnswerButton';
 
 const AnswerPanel = ({ choices, answer, handleAnswer }) => {
   return (

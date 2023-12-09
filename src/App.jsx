@@ -1,9 +1,9 @@
 import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Start from './Start';
-import Game from './Game';
-import HighScores from './HighScores';
-import '../styles/style.css';
+import Start from '@/views/Start';
+import Game from '@/views/Game';
+import HighScores from '@/views/HighScores';
+import '@/styles/main.css';
 
 const App = () => {
   return (

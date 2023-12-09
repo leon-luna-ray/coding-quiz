@@ -1,4 +1,6 @@
 import React from 'react';
+import { capitalizeLastLetter } from '@/lib/text';
+
 const AnswerButton = ({ letter, text, onClick }) => {
   return (
     <div
@@ -7,7 +9,7 @@ const AnswerButton = ({ letter, text, onClick }) => {
         onClick(text);
       }}
     >
-      <span className='choice-prefix'>{letter + 1}. </span>
+      <span className='choice-prefix'>{capitalizeLastLetter(letter)}. </span>
       <span className='choice-text'>{text}</span>
     </div>
   );
