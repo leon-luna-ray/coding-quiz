@@ -5,7 +5,6 @@ import AnswerPanel from '@/components/AnswerPanel';
 import QuestionPanel from '@/components/QuestionPanel';
 import ScorePanel from '@/components/ScorePanel';
 import GameOver from '@/components/GameOver';
-import testQuestions from '@/lib/questions';
 
 const GameContent = () => {
   const {

@@ -1,4 +1,3 @@
-// GameContext.js
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 
@@ -7,7 +6,6 @@ const GameContext = createContext();
 export const GameProvider = ({ children }) => {
     const API_TOKEN = import.meta.env.VITE_QUIZ_API_TOKEN;
     const BASE_URL = import.meta.env.VITE_BASE_API_URL;
-    const userScore = parseInt(localStorage.getItem('coding-quiz-score'));
 
     // State
     const [loading, setLoading] = useState(true);
@@ -35,11 +33,17 @@ export const GameProvider = ({ children }) => {
         [currentQuestion]
     );
 
+    // Methods
+    const handleAnswer = (userChoice) => {
+        if (userChoice === currentQuestion.answer) {
+            setScore(score + 1);
+        }
+        setQuestionIndex(questionIndex + 1);
+    };
+
     // Lifecycle
     useEffect(() => {
-        if (userScore) {
-            setScore(userScore);
-        }
+        setScore(0);
 
         const fetchQuiz = async (limit, category, difficulty, tags) => {
             const query = `${BASE_URL}/questions?&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags}`;
@@ -62,17 +66,6 @@ export const GameProvider = ({ children }) => {
 
         fetchQuiz(20, 'code', 'Easy', 'JavaScript');
     }, []);
-
-    useEffect(() => {
-        localStorage.setItem('coding-quiz-score', score);
-    }, [score]);
-
-    const handleAnswer = (userChoice) => {
-        if (userChoice === currentQuestion.answer) {
-            setScore(score + 1);
-        }
-        setQuestionIndex(questionIndex + 1);
-    };
 
     const value = {
         loading,
