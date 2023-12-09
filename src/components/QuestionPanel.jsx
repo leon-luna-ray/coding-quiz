@@ -1,9 +1,12 @@
 import React from 'react';
+import { useGameContext } from '@/contexts/GameContext';
 
-const QuestionPanel = ({ question }) => {
+const QuestionPanel = () => {
+  const { currentQuestion } = useGameContext();
+
   return (
     <div id='question'>
-      <h1>{question}</h1>
+      <h1>{currentQuestion.question}</h1>
     </div>
   );
 };
