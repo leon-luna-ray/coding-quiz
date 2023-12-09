@@ -1,13 +1,9 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import { fetchQuiz } from '@/lib/api';
-import axios from 'axios';
 
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-    const API_TOKEN = import.meta.env.VITE_QUIZ_API_TOKEN;
-    const BASE_URL = import.meta.env.VITE_BASE_API_URL;
-
     // State
     const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
