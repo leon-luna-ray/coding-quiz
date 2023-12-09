@@ -1,12 +1,14 @@
 import React from 'react';
+import { useGameContext } from '@/contexts/GameContext';
 import { capitalizeLastLetter } from '@/lib/text';
 
-const AnswerButton = ({ letter, text, onClick }) => {
+const AnswerButton = ({ letter, text }) => {
+  const { handleAnswer } = useGameContext();
   return (
     <div
       className='choice-btn'
       onClick={() => {
-        onClick(text);
+        handleAnswer(text);
       }}
     >
       <span className='choice-prefix'>{capitalizeLastLetter(letter)}. </span>

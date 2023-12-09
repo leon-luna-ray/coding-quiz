@@ -1,10 +1,14 @@
 import React from 'react';
 import AnswerButton from '@/components/AnswerButton';
+import { useGameContext } from '@/contexts/GameContext';
 
-const AnswerPanel = ({ choices, answer, handleAnswer }) => {
+
+const AnswerPanel = () => {
+  const { currentQuestionChoices } = useGameContext();
+
   return (
     <div className='answer-panel'>
-      {choices.map((choice, index) => {
+      {currentQuestionChoices.map((choice, index) => {
         const letter = choice[0];
         const text = choice[1];
         if (text === null) {
@@ -15,8 +19,6 @@ const AnswerPanel = ({ choices, answer, handleAnswer }) => {
             key={index}
             letter={letter}
             text={text}
-            answer={answer}
-            onClick={handleAnswer}
           />
         );
       })}

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useGameContext } from '@/contexts/GameContext';
 
-const ScorePanel = ({ score }) => {
+const ScorePanel = () => {
+  const { score } = useGameContext();
+  
   return (
     <div id='game' className='justify-center flex-column'>
       <div className='hud-item'>

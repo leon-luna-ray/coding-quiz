@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameProvider, useGameContext } from '../contexts/GameContext';
+import { GameProvider, useGameContext } from '@/contexts/GameContext';
 import LoadingScreen from '@/views/LoadingScreen';
 import AnswerPanel from '@/components/AnswerPanel';
 import QuestionPanel from '@/components/QuestionPanel';
@@ -26,13 +26,9 @@ const GameContent = () => {
   return (
     <main className='game container'>
       <div className='game-panel'>
-        <ScorePanel className='score-panel' score={score} />
-        <QuestionPanel className='question-panel' question={currentQuestion.question} />
-        <AnswerPanel
-          className='answer-panel'
-          choices={currentQuestionChoices}
-          handleAnswer={handleAnswer}
-        />
+        <ScorePanel className='score-panel' />
+        <QuestionPanel className='question-panel' />
+        <AnswerPanel className='answer-panel' />
       </div>
     </main>
   );
