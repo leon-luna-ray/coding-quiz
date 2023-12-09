@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import AnswerPanel from './AnswerPanel';
-import QuestionPanel from './QuestionPanel';
-import ScorePanel from './ScorePanel';
-import GameOver from './GameOver';
-import testQuestions from './questions';
+import AnswerPanel from '@/components/AnswerPanel';
+import QuestionPanel from '@/components/QuestionPanel';
+import ScorePanel from '@/components/ScorePanel';
+import GameOver from '@/components/GameOver';
+import testQuestions from '@/components/questions';
 
 const Game = () => {
   const userScore = parseInt(localStorage.getItem('coding-quiz-score'));
