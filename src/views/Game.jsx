@@ -4,7 +4,7 @@ import AnswerPanel from '@/components/AnswerPanel';
 import QuestionPanel from '@/components/QuestionPanel';
 import ScorePanel from '@/components/ScorePanel';
 import GameOver from '@/components/GameOver';
-import testQuestions from '@/components/questions';
+import testQuestions from '@/lib/questions';
 
 const Game = () => {
   const userScore = parseInt(localStorage.getItem('coding-quiz-score'));
@@ -13,31 +13,38 @@ const Game = () => {
   const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
-  // Avoid resetting score on reload
+
   useEffect(() => {
     if (userScore) {
       setScore(userScore);
     }
-    const fetchQuestions = async () => {
-      const questions = await axios.get(
-        'https://quizapi.io/api/v1/questions?apiKey=gpVMgV0KdzCQI3oQBr4a8EGNpc0HnJqPcK2MvVYu&category=code&limit=20'
-      );
-      setQuestions(questions.data);
-      setLoading(false);
-      console.log(questions.data);
+    const fetchQuestions = async (limit) => {
+      try {
+        const response = await axios.get('https://quizapi.io/api/v1/questions', {
+          headers: {
+            'X-Api-Key': import.meta.env.VITE_QUIZ_API_TOKEN,
+          },
+          params: {
+            limit: limit,
+          },
+        });
+
+        setQuestions(response.data);
+        setLoading(false);
+      } catch (error) {
+      }
     };
     fetchQuestions();
   }, []);
-  // Update local storage on score state change
+
   useEffect(() => {
     localStorage.setItem('coding-quiz-score', score);
   }, [score]);
 
-  // Handle Loading
   if (loading) {
     return <h1>Start!</h1>;
   }
-  // Handle game over, change to the actual questions array when done testing
+
   if (questionIndex === testQuestions.length - 1) {
     return <GameOver score={score} />;
   }

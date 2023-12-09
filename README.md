@@ -19,13 +19,11 @@ This is a quiz app that will test your coding knowledge!
 ## Technologies
 
 - React.js
+- CSS3
+- HTML5
 - Javascript
-- Vite.js
-- HTML
-- CSS
-- Fontawesome
-- Google Fonts
 - Netlify
+- Vite.js
 
 ## Image
 
