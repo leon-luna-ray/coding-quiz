@@ -30,7 +30,7 @@ This is a quiz app that will test your coding knowledge! The app is built with R
 
 ## Image
 
-![Screenshot](./assets/coding-quiz.png)
+![Screenshot](./src/assets/img/coding-quiz.png)
 
 
 ## License

@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Start from '@/views/Start';
 import Game from '@/views/Game';
 import HighScores from '@/views/HighScores';
-import '@/styles/main.css';
+import '@/assets/styles/main.css';
 
 const App = () => {
   return (

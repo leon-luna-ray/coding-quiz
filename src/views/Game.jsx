@@ -7,13 +7,7 @@ import ScorePanel from '@/components/ScorePanel';
 import GameOver from '@/components/GameOver';
 
 const GameContent = () => {
-  const {
-    loading,
-    score,
-    currentQuestion,
-    currentQuestionChoices,
-    handleAnswer,
-  } = useGameContext();
+  const { loading, currentQuestion } = useGameContext();
 
   if (loading) {
     return <LoadingScreen />;
