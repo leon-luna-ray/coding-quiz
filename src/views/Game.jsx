@@ -23,9 +23,8 @@ const Game = () => {
       setScore(userScore);
     }
     const fetchQuiz = async (limit, category, difficulty, tags) => {
-      // const query = `${BASE_URL}/questions?apiKey=${API_TOKEN}Y&category=${'code'}&difficulty=${difficulty}&limit=${limit}tags=${tags}`
-      const query = `https://quizapi.io/api/v1/questions?apiKey=${API_TOKEN}&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags}
-`
+      const query = `${BASE_URL}/questions?&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags}`
+      
       try {
         const response = await axios.get(query, {
           headers: {
