@@ -15,8 +15,9 @@ const Start = () => {
   };
 
   return (
-    <div className='container h-screen'>
-      <div className='start-panel'>
+    <div className='container h-screen flex justify-center items-center'>
+
+      <div className='start-panel flex-col-1 items-center justify-center border h-max px-[2rem] py-[3rem] rounded-xl'>
         <div className='start-title'>
           <h1>Coding Quiz!</h1>
         </div>
@@ -34,6 +35,7 @@ const Start = () => {
           />
         </div>
       </div>
+
     </div>
   );
 };

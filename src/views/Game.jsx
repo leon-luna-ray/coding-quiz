@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import LoadingScreen from '@/views/LoadingScreen';
 import AnswerPanel from '@/components/AnswerPanel';
 import QuestionPanel from '@/components/QuestionPanel';
 import ScorePanel from '@/components/ScorePanel';
@@ -42,7 +43,7 @@ const Game = () => {
   }, [score]);
 
   if (loading) {
-    return <h1>Start!</h1>;
+    return <LoadingScreen />;
   }
 
   if (questionIndex === testQuestions.length - 1) {
@@ -54,9 +55,7 @@ const Game = () => {
   const choices = Object.keys(answers).map((key) => [key, answers[key]]);
   const answer = testQuestions[questionIndex].answer;
 
-  // need to extract answer
   const handleAnswer = (userChoice) => {
-    // add additional logic here to show which one is the correct one
     if (userChoice === answer) {
       setScore(score + 1);
       setQuestionIndex(questionIndex + 1);
@@ -65,7 +64,7 @@ const Game = () => {
   };
 
   return (
-    <section className='game'>
+    <main className='game container'>
       <div className='game-panel'>
         <ScorePanel className='score-panel' score={score} />
         <QuestionPanel className='question-panel' question={question} />
@@ -76,7 +75,7 @@ const Game = () => {
           handleAnswer={handleAnswer}
         />
       </div>
-    </section>
+    </main>
   );
 };
 
