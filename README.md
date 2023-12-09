@@ -2,9 +2,11 @@
 
 ## Description
 
-This is a quiz app that will test your coding knowledge!
+This is a quiz app that will test your coding knowledge! The app is built with React.js with quiz quesions fetched from https://quizapi.io/
 
 [🚀 https://coding-quiz-rldev.netlify.app/](https://coding-quiz-rldev.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/deb25954-fa4f-400f-8261-e10a5dac0572/deploy-status)](https://app.netlify.com/sites/coding-quiz-rldev/deploys)
 
 ## Table of Contents
 
@@ -30,16 +32,6 @@ This is a quiz app that will test your coding knowledge!
 
 ![Screenshot](./assets/coding-quiz.png)
 
-## Known-Bugs
-
-Styling issues with CSS flexbox
-
-## Next-Steps
-
-- Complete high scores page
-- Add more questions
-- Randomize questions
-- Question timer with variable score
 
 ## License
 
