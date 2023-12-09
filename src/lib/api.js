@@ -15,7 +15,6 @@ export const fetchQuiz = async (limit, difficulty, tags) => {
                 limit: limit,
             },
         });
-        console.log(response)
         return response.data;
     } catch (error) {
         console.error(error);

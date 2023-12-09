@@ -1,21 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from './Button';
+import { Link } from 'react-router-dom';
 
 const GameOver = ({ score }) => {
-  const navigate = useNavigate();
-
-  const redirectHome = () => {
-    navigate('/');
-  };
-
   return (
     <div className='container'>
       <div className='start-panel'>
         <h1>Game Over</h1>
         <h2>Score</h2>
         <h1>{score}</h1>
-        <Button id='home-btn' text='Home' onClick={redirectHome} />
+        <Link id='home-btn' className='btn' to='/'>Home</Link>
       </div>
     </div>
   );

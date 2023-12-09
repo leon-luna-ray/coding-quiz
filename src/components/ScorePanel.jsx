@@ -8,9 +8,7 @@ const ScorePanel = () => {
     <div id='game' className='justify-center flex-column'>
       <div className='hud-item'>
         <p className='hud-prefix'>Score</p>
-        <h1 className='hud-main-text' id='score'>
-          {score}
-        </h1>
+        <h1 className='hud-main-text' id='score'>{score}</h1>
       </div>
     </div>
   );
