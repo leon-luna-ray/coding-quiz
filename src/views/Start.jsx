@@ -1,17 +1,16 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Button';
 
 const Start = () => {
-  let history = useHistory();
-  // Set score to 0 and redirect with useHistory hook
+  const navigate = useNavigate();
+
   const startNewGame = () => {
-    localStorage.setItem('coding-quiz-score', 0);
-    history.push('/game');
+    navigate('/game');
   };
 
   const viewHighScores = () => {
-    history.push('/high_scores');
+    navigate('/high_scores');
   };
 
   return (

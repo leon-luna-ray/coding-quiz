@@ -1,12 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Button';
 
 const HighScores = () => {
-  let history = useHistory();
+  const navigate = useNavigate();
 
   const redirectHome = () => {
-    history.push('/');
+    navigate('/');
   };
 
   return (
