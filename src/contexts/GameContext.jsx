@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import { fetchQuiz } from '@/lib/api';
 import axios from 'axios';
 
 const GameContext = createContext();
@@ -43,28 +44,19 @@ export const GameProvider = ({ children }) => {
 
     // Lifecycle
     useEffect(() => {
-        setScore(0);
-
-        const fetchQuiz = async (limit, category, difficulty, tags) => {
-            const query = `${BASE_URL}/questions?&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags}`;
-
+        const fetchData = async () => {
             try {
-                const response = await axios.get(query, {
-                    headers: {
-                        'X-Api-Key': API_TOKEN,
-                    },
-                    params: {
-                        limit: limit,
-                    },
-                });
-                setQuestions(response.data);
-                setLoading(false);
+                setLoading(true);
+                const data = await fetchQuiz(20, 'code', 'Easy', 'JavaScript');
+                setQuestions(data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setLoading(false);
             }
         };
 
-        fetchQuiz(20, 'code', 'Easy', 'JavaScript');
+        fetchData();
     }, []);
 
     const value = {
