@@ -24,15 +24,15 @@ const Start = () => {
         <div className='start-btns'>
           <Button
             id='start-btn'
-            text={'Start'}
+            text={'JavaScript Quiz'}
             to={'/game'}
             onClick={startNewGame}
           />
-          <Button
+          {/* <Button
             id='highscore-btn'
             text={'High Scores'}
             onClick={viewHighScores}
-          />
+          /> */}
         </div>
       </div>
 
