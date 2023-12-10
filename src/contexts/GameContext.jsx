@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
-import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { fetchQuiz } from '@/lib/api';
 
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-    const API_TOKEN = import.meta.env.VITE_QUIZ_API_TOKEN;
-    const BASE_URL = import.meta.env.VITE_BASE_API_URL;
+    const location = useLocation();
 
     // State
     const [loading, setLoading] = useState(true);
@@ -14,6 +14,19 @@ export const GameProvider = ({ children }) => {
     const [questionIndex, setQuestionIndex] = useState(0);
 
     // Memo
+    const quizType = useMemo(() => {
+        switch (location.pathname) {
+            case '/quiz/html':
+                return 'HTML';
+            case '/quiz/javascript':
+                return 'JavaScript';
+            case '/quiz/python':
+                return 'Python';
+            default:
+                return 'DefaultType';
+        }
+    }, [location.pathname]);
+
     const currentQuestion = useMemo(
         () => {
             if (questions) {
@@ -23,6 +36,7 @@ export const GameProvider = ({ children }) => {
         },
         [questions, questionIndex]
     );
+
     const currentQuestionChoices = useMemo(
         () => {
             if (currentQuestion) {
@@ -34,8 +48,13 @@ export const GameProvider = ({ children }) => {
     );
 
     // Methods
+    const isCorrect = (userChoice, answers) => {
+        const correctAnswer = answers[`${userChoice}_correct`];
+        return correctAnswer === "true";
+    };
+
     const handleAnswer = (userChoice) => {
-        if (userChoice === currentQuestion.answer) {
+        if (isCorrect(userChoice, currentQuestion.correct_answers)) {
             setScore(score + 1);
         }
         setQuestionIndex(questionIndex + 1);
@@ -43,28 +62,18 @@ export const GameProvider = ({ children }) => {
 
     // Lifecycle
     useEffect(() => {
-        setScore(0);
-
-        const fetchQuiz = async (limit, category, difficulty, tags) => {
-            const query = `${BASE_URL}/questions?&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags}`;
-
+        const fetchData = async () => {
             try {
-                const response = await axios.get(query, {
-                    headers: {
-                        'X-Api-Key': API_TOKEN,
-                    },
-                    params: {
-                        limit: limit,
-                    },
-                });
-                setQuestions(response.data);
-                setLoading(false);
+                setLoading(true);
+                const data = await fetchQuiz(20, 'code', 'Easy', quizType);
+                setQuestions(data);
             } catch (error) {
                 console.error(error);
+            } finally {
+                setLoading(false);
             }
         };
-
-        fetchQuiz(20, 'code', 'Easy', 'JavaScript');
+        fetchData();
     }, []);
 
     const value = {
@@ -72,6 +81,7 @@ export const GameProvider = ({ children }) => {
         score,
         currentQuestion,
         currentQuestionChoices,
+        quizType,
         handleAnswer,
     };
 
