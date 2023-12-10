@@ -19,7 +19,8 @@ module.exports = {
         slate: '#1C1A1A',
       },
       fontFamily: {
-        'nova-square': ['Nova Square', 'sans-serif'],
+        'syne': ['Syne Mono', 'monospace'],
+        'space': ['Space Mono', 'monospace'],
       },
       boxShadow: {
         'glow-blue': '0 0.4rem 1.4rem 0 rgba(8, 114, 224, 0.6)',

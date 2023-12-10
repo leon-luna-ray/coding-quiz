@@ -16,9 +16,9 @@ const AnswerButton = ({ letter, text }) => {
     }
   }
   return (
-    <button className={btnColorClass()} onClick={() => { handleAnswer(letter); }}>
-      <span className='choice-prefix'>{capitalizeLastLetter(letter)}. </span>
-      <span className='choice-text'>{text}</span>
+    <button className={`w-full ${btnColorClass()}`} onClick={() => { handleAnswer(letter); }}>
+      <span>{capitalizeLastLetter(letter)}. </span>
+      <span>{text}</span>
     </button>
   );
 };

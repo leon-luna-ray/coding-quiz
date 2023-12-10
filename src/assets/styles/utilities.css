@@ -16,9 +16,11 @@
   .gradient-blue {
     @apply bg-gradient-to-r from-[#125DFF] to-[#125DFF];
   }
+
   .gradient-orange {
     @apply bg-gradient-to-r from-[#ff9a00] to-[#FF7400];
   }
+
   .gradient-yellow {
     @apply bg-gradient-to-r from-[#FFF709] to-[#F0DD06];
   }
@@ -29,6 +31,10 @@
 
   .flex-col-03 {
     @apply flex flex-col gap-y-[0.3rem];
+  }
+
+  .flex-col-05 {
+    @apply flex flex-col gap-y-[0.5rem];
   }
 
   .flex-col-1 {
