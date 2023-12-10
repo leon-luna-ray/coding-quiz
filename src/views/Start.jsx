@@ -8,8 +8,10 @@ const Start = () => {
         <div className='start-title'>
           <h1>Coding Quiz!</h1>
         </div>
-        <div className='start-btns'>
-          <Link id='start-btn' className='btn' to='/game'>JavaScript Quiz</Link>
+        <div className='start-btns flex flex-col'>
+          <Link id='start-btn' className='btn' to='/quiz/html'>HTML Quiz</Link>
+          <Link id='start-btn' className='btn' to='/quiz/javascript'>JavaScript Quiz</Link>
+          <Link id='start-btn' className='btn' to='/quiz/python'>Python Quiz</Link>
           {/* <Link id='highscore-btn' className='btn' to='/high_scores'>High Scores</Link> */}
         </div>
       </div>

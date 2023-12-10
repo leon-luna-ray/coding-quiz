@@ -1,17 +1,32 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
 const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
+    const location = useLocation();
+
     // State
     const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
-    const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
 
     // Memo
+    const quizType = useMemo(() => {
+        switch (location.pathname) {
+            case '/quiz/html':
+                return 'HTML';
+            case '/quiz/javascript':
+                return 'JavaScript';
+            case '/quiz/python':
+                return 'Python';
+            default:
+                return 'DefaultType';
+        }
+    }, [location.pathname]);
+
     const currentQuestion = useMemo(
         () => {
             if (questions) {
@@ -21,6 +36,7 @@ export const GameProvider = ({ children }) => {
         },
         [questions, questionIndex]
     );
+
     const currentQuestionChoices = useMemo(
         () => {
             if (currentQuestion) {
@@ -36,6 +52,7 @@ export const GameProvider = ({ children }) => {
         const correctAnswer = answers[`${userChoice}_correct`];
         return correctAnswer === "true";
     };
+
     const handleAnswer = (userChoice) => {
         if (isCorrect(userChoice, currentQuestion.correct_answers)) {
             setScore(score + 1);
@@ -48,7 +65,7 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const data = await fetchQuiz(20, 'code', 'Easy', 'JavaScript');
+                const data = await fetchQuiz(20, 'code', 'Easy', quizType);
                 setQuestions(data);
             } catch (error) {
                 console.error(error);
@@ -56,7 +73,7 @@ export const GameProvider = ({ children }) => {
                 setLoading(false);
             }
         };
-
+        console.log(location.pathname)
         fetchData();
     }, []);
 
@@ -65,7 +82,7 @@ export const GameProvider = ({ children }) => {
         score,
         currentQuestion,
         currentQuestionChoices,
-        setSelectedQuiz,
+        quizType,
         handleAnswer,
     };
 

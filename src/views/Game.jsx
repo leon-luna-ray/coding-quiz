@@ -8,7 +8,7 @@ import GameOver from '@/components/GameOver';
 
 const GameContent = () => {
   const { loading, currentQuestion } = useGameContext();
-
+  
   if (loading) return <LoadingScreen />;
   if (!currentQuestion) return <GameOver />;
 

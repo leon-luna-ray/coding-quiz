@@ -11,8 +11,10 @@ const App = () => {
     <main className='app'>
       <Routes>
         <Route path='/' element={<Start />} />
-        <Route path='/game' element={<Game />} />
-        <Route path='/high_scores' element={<HighScores />} />
+        <Route path='/quiz/html' element={<Game />} />
+        <Route path='/quiz/javascript' element={<Game />} />
+        <Route path='/quiz/python' element={<Game />} />
+        {/* <Route path='/high_scores' element={<HighScores />} /> */}
       </Routes>
     </main>
   );
