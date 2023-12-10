@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 const Start = () => {
   return (
     <div className='container flex justify-center items-center md:pt-[12rem]'>
-      <div className='start-panel flex-col-1 items-center justify-center border h-max px-[2rem] py-[3rem] rounded-xl'>
-        <div className='start-title'>
+      <div className='flex-col-1 items-center justify-center border h-max px-[2rem] py-[3rem] rounded-xl'>
+        <div>
           <h1>Coding Quiz!</h1>
         </div>
-        <div className='start-btns flex flex-col'>
-          <Link id='start-btn' className='btn' to='/quiz/html'>HTML Quiz</Link>
-          <Link id='start-btn' className='btn' to='/quiz/javascript'>JavaScript Quiz</Link>
-          <Link id='start-btn' className='btn' to='/quiz/python'>Python Quiz</Link>
-          <Link id='highscore-btn' className='btn secondary' to='/high_scores'>High Scores</Link>
+        <div className='flex flex-col'>
+          <Link className='btn tertiary' to='/quiz/html'>HTML Quiz</Link>
+          <Link className='btn secondary' to='/quiz/javascript'>JavaScript Quiz</Link>
+          <Link className='btn' to='/quiz/python'>Python Quiz</Link>
+          {/* <Link className='btn secondary' to='/high_scores'>High Scores</Link> */}
         </div>
       </div>
     </div>

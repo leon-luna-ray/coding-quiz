@@ -16,6 +16,9 @@
     button.secondary, .btn.secondary {
         @apply gradient-yellow;
     }
+    button.tertiary, .btn.tertiary {
+        @apply gradient-orange;
+    }
 
     a.btn {
         @apply hover:!no-underline;

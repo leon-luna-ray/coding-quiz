@@ -16,6 +16,9 @@
   .gradient-blue {
     @apply bg-gradient-to-r from-[#125DFF] to-[#125DFF];
   }
+  .gradient-orange {
+    @apply bg-gradient-to-r from-[#ff9a00] to-[#FF7400];
+  }
   .gradient-yellow {
     @apply bg-gradient-to-r from-[#FFF709] to-[#F0DD06];
   }
