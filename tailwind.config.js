@@ -16,16 +16,22 @@ module.exports = {
     extend: {
       colors: {
         primay: '#0264ff',
-        slate: '#222222',
+        slate: '#1C1A1A',
       },
       fontFamily: {
-        'nova-square': ['Nova Square', 'sans-serif'],
+        'syne': ['Syne Mono', 'monospace'],
+        'space': ['Space Mono', 'monospace'],
+        'red-hat': ['Red Hat Display', 'sans-serif'],
+      },
+      boxShadow: {
+        'glow-blue': '0 0.4rem 1.4rem 0 rgba(8, 114, 224, 0.6)',
+        'glow-orange': '0 0.4rem 1.4rem 0 rgba(255, 0, 0, 0.5)',
       },
       animation: {
         none: 'none',
         bounce: 'bounce 1s infinite',
         ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
-        pulse: 'pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        pulse: 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         slide: 'slide 1s ease-in-out infinite alternate, slide-out 1s ease-in-out 1s infinite alternate',
         spin: 'spin 5s linear infinite',
         wiggle: 'wiggle 4s ease-in-out infinite',

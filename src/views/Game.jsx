@@ -3,7 +3,6 @@ import { GameProvider, useGameContext } from '@/contexts/GameContext';
 import LoadingScreen from '@/views/LoadingScreen';
 import AnswerPanel from '@/components/AnswerPanel';
 import QuestionPanel from '@/components/QuestionPanel';
-import ScorePanel from '@/components/ScorePanel';
 import GameOver from '@/components/GameOver';
 
 const GameContent = () => {
@@ -13,12 +12,9 @@ const GameContent = () => {
   if (!currentQuestion) return <GameOver />;
 
   return (
-    <div className='container'>
-      <div className='game-panel'>
-        <ScorePanel className='score-panel' />
-        <QuestionPanel className='question-panel' />
-        <AnswerPanel className='answer-panel' />
-      </div>
+    <div className="container flex-col-4">
+      <QuestionPanel className='question-panel' />
+      <AnswerPanel className='answer-panel' />
     </div>
   );
 };
