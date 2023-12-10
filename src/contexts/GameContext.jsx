@@ -73,7 +73,6 @@ export const GameProvider = ({ children }) => {
                 setLoading(false);
             }
         };
-        console.log(location.pathname)
         fetchData();
     }, []);
 
