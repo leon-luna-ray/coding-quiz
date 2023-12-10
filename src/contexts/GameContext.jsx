@@ -7,6 +7,7 @@ export const GameProvider = ({ children }) => {
     // State
     const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
+    const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -60,6 +61,7 @@ export const GameProvider = ({ children }) => {
         score,
         currentQuestion,
         currentQuestionChoices,
+        setSelectedQuiz,
         handleAnswer,
     };
 
