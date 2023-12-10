@@ -21,6 +21,7 @@ module.exports = {
       fontFamily: {
         'syne': ['Syne Mono', 'monospace'],
         'space': ['Space Mono', 'monospace'],
+        'red-hat': ['Red Hat Display', 'sans-serif'],
       },
       boxShadow: {
         'glow-blue': '0 0.4rem 1.4rem 0 rgba(8, 114, 224, 0.6)',

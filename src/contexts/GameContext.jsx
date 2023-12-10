@@ -8,8 +8,8 @@ export const GameProvider = ({ children }) => {
     const location = useLocation();
 
     // State
-    const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
+    const [loading, setLoading] = useState(true);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -73,17 +73,19 @@ export const GameProvider = ({ children }) => {
                 setLoading(false);
             }
         };
+
         fetchData();
     }, []);
 
     const value = {
-        loading,
         score,
+        loading,
+        quizType,
         currentQuestion,
         currentQuestionChoices,
-        quizType,
+        setScore,
         handleAnswer,
-    };
+      };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };

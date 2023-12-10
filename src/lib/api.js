@@ -20,7 +20,6 @@ export const fetchQuiz = async (limit, category, difficulty, tags) => {
             params: queryParams,
         });
 
-        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error(error);

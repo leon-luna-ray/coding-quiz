@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a quiz app that will test your coding knowledge! The app is built with React.js with quiz quesions fetched from quizapi.io.
+This is a quiz app that will test your coding knowledge! The app is built with React.js with quiz quesions fetched from quizapi.io. Current quizes include HTML, JavaScript and Python.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/deb25954-fa4f-400f-8261-e10a5dac0572/deploy-status)](https://app.netlify.com/sites/coding-quiz-rldev/deploys)
 
@@ -31,7 +31,7 @@ This is a quiz app that will test your coding knowledge! The app is built with R
 
 ## Image
 
-![Screenshot](./src/assets/img/coding-quiz.png)
+![Screenshot](./src/assets/img/quizsn.png)
 
 
 ## License

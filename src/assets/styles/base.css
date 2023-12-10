@@ -52,7 +52,7 @@
 
     h4,
     .h4 {
-        @apply text-[2rem];
+        @apply text-[2rem] leading-[2.5rem];
     }
 
     h5,
