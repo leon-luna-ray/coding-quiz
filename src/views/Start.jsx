@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Start = () => {
   return (
-    <div className='container h-screen flex justify-center items-center'>
+    <div className='container flex justify-center items-center md:pt-[12rem]'>
       <div className='start-panel flex-col-1 items-center justify-center border h-max px-[2rem] py-[3rem] rounded-xl'>
         <div className='start-title'>
           <h1>Coding Quiz!</h1>

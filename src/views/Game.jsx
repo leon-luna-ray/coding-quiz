@@ -8,18 +8,18 @@ import GameOver from '@/components/GameOver';
 
 const GameContent = () => {
   const { loading, currentQuestion } = useGameContext();
-  
+
   if (loading) return <LoadingScreen />;
   if (!currentQuestion) return <GameOver />;
 
   return (
-    <main className='game container'>
+    <div className='container'>
       <div className='game-panel'>
         <ScorePanel className='score-panel' />
         <QuestionPanel className='question-panel' />
         <AnswerPanel className='answer-panel' />
       </div>
-    </main>
+    </div>
   );
 };
 
