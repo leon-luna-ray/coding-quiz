@@ -16,10 +16,14 @@ module.exports = {
     extend: {
       colors: {
         primay: '#0264ff',
-        slate: '#222222',
+        slate: '#1C1A1A',
       },
       fontFamily: {
         'nova-square': ['Nova Square', 'sans-serif'],
+      },
+      boxShadow: {
+        'glow-blue': '0 0.4rem 1.4rem 0 rgba(8, 114, 224, 0.6)',
+        'glow-orange': '0 0.4rem 1.4rem 0 rgba(255, 0, 0, 0.5)',
       },
       animation: {
         none: 'none',

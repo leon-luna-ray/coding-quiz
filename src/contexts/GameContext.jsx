@@ -65,7 +65,7 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const data = await fetchQuiz(20, 'code', 'Easy', quizType);
+                const data = await fetchQuiz(10, 'code', 'easy', quizType);
                 setQuestions(data);
             } catch (error) {
                 console.error(error);

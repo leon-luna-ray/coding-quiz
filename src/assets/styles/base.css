@@ -11,7 +11,10 @@
 
     button,
     .btn {
-        @apply py-2 px-4 rounded-md;
+        @apply text-[2.4rem] py-[1rem] w-[30rem] text-center m-[1rem] text-slate rounded-lg gradient-blue hover:cursor-pointer zoom-in-out;
+    }
+    button.secondary, .btn.secondary {
+        @apply gradient-yellow;
     }
 
     a.btn {

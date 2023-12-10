@@ -12,7 +12,7 @@ const Start = () => {
           <Link id='start-btn' className='btn' to='/quiz/html'>HTML Quiz</Link>
           <Link id='start-btn' className='btn' to='/quiz/javascript'>JavaScript Quiz</Link>
           <Link id='start-btn' className='btn' to='/quiz/python'>Python Quiz</Link>
-          {/* <Link id='highscore-btn' className='btn' to='/high_scores'>High Scores</Link> */}
+          <Link id='highscore-btn' className='btn secondary' to='/high_scores'>High Scores</Link>
         </div>
       </div>
     </div>
