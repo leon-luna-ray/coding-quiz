@@ -32,17 +32,14 @@ export const GameProvider = ({ children }) => {
     );
 
     // Methods
+    const isCorrect = (userChoice, answers) => {
+        const correctAnswer = answers[`${userChoice}_correct`];
+        return correctAnswer === "true";
+    };
     const handleAnswer = (userChoice) => {
-        console.log(userChoice)
-        console.log(currentQuestion.correct_answer === userChoice)
-        if (userChoice === currentQuestion.correct_answer) {
+        if (isCorrect(userChoice, currentQuestion.correct_answers)) {
             setScore(score + 1);
-            console.log('correct')
         }
-        else {
-            console.log('incorrect!!')
-        }
-
         setQuestionIndex(questionIndex + 1);
     };
 
