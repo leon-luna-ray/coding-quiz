@@ -25,7 +25,6 @@ module.exports = {
       },
       boxShadow: {
         'glow': '0 0.01rem 1rem 0 #fff',
-        // 'glow-blue': '0 0.4rem 1.4rem 0 rgba(8, 114, 224, 0.6)',
         'glow-orange': '0 0.4rem 1.4rem 0 rgba(255, 0, 0, 0.5)',
       },
       animation: {
