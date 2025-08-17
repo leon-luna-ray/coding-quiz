@@ -1,62 +1,62 @@
-@tailwind base;
+body {
+    @apply text-[1.25rem] font-extralight bg-slate font-space;
+}
 
-@layer base {
-    body {
-        @apply text-[1.25rem] font-[200] bg-slate font-space;
-    }
+a {
+    @apply hover:underline;
+}
 
-    a {
-        @apply hover:underline;
-    }
+button,
+.btn {
+    @apply py-4 text-center text-[1.5rem] text-slate rounded-lg gradient-blue hover:cursor-pointer zoom-in-out hover:shadow-glow;
+}
 
-    button,
-    .btn {
-        @apply py-[1rem] text-center text-[1.5rem] text-slate rounded-lg gradient-blue hover:cursor-pointer zoom-in-out hover:shadow-glow;
-    }
-    button.secondary, .btn.secondary {
-        @apply gradient-yellow;
-    }
-    button.tertiary, .btn.tertiary {
-        @apply gradient-orange;
-    }
+button.secondary,
+.btn.secondary {
+    @apply gradient-yellow;
+}
 
-    a.btn {
-        @apply hover:!no-underline;
-    }
+button.tertiary,
+.btn.tertiary {
+    @apply gradient-orange;
+}
 
-    h1,
-    h2,
-    h3,
-    h4,
-    .h1,
-    .h2,
-    .h3,
-    .h4 {
-        @apply font-[500] text-white font-syne leading-[5rem];
-    }
+a.btn {
+    @apply hover:no-underline;
+}
 
-    h1,
-    .h1 {
-        @apply text-[5rem];
-    }
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+    @apply font-medium text-white font-syne leading-20;
+}
 
-    h2,
-    .h2 {
-        @apply text-[4rem];
-    }
+h1,
+.h1 {
+    @apply text-[5rem];
+}
 
-    h3,
-    .h3 {
-        @apply text-[3rem];
-    }
+h2,
+.h2 {
+    @apply text-[4rem];
+}
 
-    h4,
-    .h4 {
-        @apply text-[2rem] leading-[2.5rem];
-    }
+h3,
+.h3 {
+    @apply text-[3rem];
+}
 
-    h5,
-    .h5 {
-        @apply text-[1rem];
-    }
+h4,
+.h4 {
+    @apply text-[2rem] leading-10;
+}
+
+h5,
+.h5 {
+    @apply text-[1rem];
 }

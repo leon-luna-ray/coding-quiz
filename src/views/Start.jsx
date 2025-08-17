@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Start = () => {
   return (
     <div className='container flex justify-center items-center'>
-      <div className='flex-col-2 items-center justify-center border h-max py-[2rem] px-[3rem] rounded-xl'>
+      <div className='flex-col-2 items-center justify-center border h-max py-8 px-12 rounded-xl'>
         <div>
           <h1>Coding Quiz!</h1>
         </div>

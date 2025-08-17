@@ -1,59 +1,66 @@
-@tailwind utilities;
-
-@layer utilities {
-  .border-red {
-    @apply border-2 border-red-600;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  @media (width >= theme(--breakpoint-md)) {
+    padding-inline: 2rem;
   }
-
-  .border-green {
-    @apply border-2 border-green-600;
+  @media (width >= theme(--breakpoint-lg)) {
+    padding-inline: 4rem;
   }
+}
 
-  .border-blue {
-    @apply border-2 border-blue-600;
-  }
+@utility border-red {
+  @apply border-2 border-red-600;
+}
 
-  .gradient-blue {
-    @apply bg-gradient-to-r from-[#125DFF] to-[#125DFF];
-  }
+@utility border-green {
+  @apply border-2 border-green-600;
+}
 
-  .gradient-orange {
-    @apply bg-gradient-to-r from-[#ff9a00] to-[#FF7400];
-  }
+@utility border-blue {
+  @apply border-2 border-blue-600;
+}
 
-  .gradient-yellow {
-    @apply bg-gradient-to-r from-[#FFF709] to-[#F0DD06];
-  }
+@utility gradient-blue {
+  @apply bg-linear-to-r from-[#125DFF] to-[#125DFF];
+}
 
-  .page-center {
-    @apply h-screen flex justify-center items-center;
-  }
+@utility gradient-orange {
+  @apply bg-linear-to-r from-[#ff9a00] to-[#FF7400];
+}
 
-  .flex-col-03 {
-    @apply flex flex-col gap-y-[0.3rem];
-  }
+@utility gradient-yellow {
+  @apply bg-linear-to-r from-[#FFF709] to-[#F0DD06];
+}
 
-  .flex-col-05 {
-    @apply flex flex-col gap-y-[0.5rem];
-  }
+@utility page-center {
+  @apply h-screen flex justify-center items-center;
+}
 
-  .flex-col-1 {
-    @apply flex flex-col gap-y-[1rem];
-  }
+@utility flex-col-03 {
+  @apply flex flex-col gap-y-[0.3rem];
+}
 
-  .flex-col-2 {
-    @apply flex flex-col gap-y-[2rem];
-  }
+@utility flex-col-05 {
+  @apply flex flex-col gap-y-2;
+}
 
-  .flex-col-3 {
-    @apply flex flex-col gap-y-[3rem];
-  }
+@utility flex-col-1 {
+  @apply flex flex-col gap-y-4;
+}
 
-  .flex-col-4 {
-    @apply flex flex-col gap-y-[4rem];
-  }
+@utility flex-col-2 {
+  @apply flex flex-col gap-y-8;
+}
 
-  .zoom-in-out {
-    @apply transition-transform transform hover:scale-105 hover:cursor-pointer;
-  }
+@utility flex-col-3 {
+  @apply flex flex-col gap-y-12;
+}
+
+@utility flex-col-4 {
+  @apply flex flex-col gap-y-16;
+}
+
+@utility zoom-in-out {
+  @apply transition-transform transform hover:scale-105 hover:cursor-pointer;
 }

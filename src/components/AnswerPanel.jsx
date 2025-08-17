@@ -16,7 +16,7 @@ const AnswerPanel = () => {
   })
 
   return (
-    <div className='grid md:grid-cols-2 gap-[1rem]'>{buttons}</div>
+    <div className='grid md:grid-cols-2 gap-4'>{buttons}</div>
   );
 };
 
