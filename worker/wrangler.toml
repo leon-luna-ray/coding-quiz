@@ -1,8 +1,11 @@
-name = "code-design-worker"
+name = "coding-quiz-worker"
 main = "src/worker.js"
 compatibility_date = "2024-12-27"
 workers_dev = true
 preview_urls = false
+
+[build]
+command = "pnpm install --no-frozen-lockfile"
 
 [observability.logs]
 enabled = true
