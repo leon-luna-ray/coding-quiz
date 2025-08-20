@@ -1,0 +1,15 @@
+{
+  "name": "coding-quiz",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  },
+  "workspaces": [
+    "client",
+    "worker"
+  ],
+  "packageManager": "pnpm@8.6.0"
+}
