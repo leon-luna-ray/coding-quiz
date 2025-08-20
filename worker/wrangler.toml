@@ -7,5 +7,8 @@ preview_urls = false
 [build]
 command = "npm install"
 
+[vars]
+ALLOWED_ORIGINS = "https://coding-quiz-rldev.netlify.app/"
+
 [observability.logs]
 enabled = true
