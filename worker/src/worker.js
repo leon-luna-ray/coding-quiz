@@ -2,78 +2,99 @@
 export default {
   async fetch(request, env, ctx) {
     // Handle CORS preflight requests
+    // Handle CORS preflight requests
     if (request.method === 'OPTIONS') {
       return handleOptions(request);
     }
 
-    if (request.method !== 'POST') {
-      return new Response('Expected POST request', { status: 405 });
+    if (request.method !== 'GET') {
+      return new Response('Expected GET request', { status: 405 });
     }
 
-    const { limit, category, difficulty, tags } = await request.json();
-    const geminiApiKey = env.GEMINI_API_KEY;
+    // Parse query parameters from URL instead of JSON body
+    const url = new URL(request.url);
+    const limit = url.searchParams.get('limit') || '10';
+    const category = url.searchParams.get('category') || '';
+    const difficulty = url.searchParams.get('difficulty') || '';
+    const tags = url.searchParams.get('tags') ? url.searchParams.get('tags').split(',') : [];
+    
+    console.log('Query params:', { limit, category, difficulty, tags });
 
-    if (!geminiApiKey) {
-        return new Response('API key not configured', { status: 500 });
-    }
-
-    const prompt = `
-        Generate ${limit} quiz questions with the following criteria:
-        - Category: ${category}
-        - Difficulty: ${difficulty}
-        - Tags: ${tags.join(', ')}
-
-        Provide the output as a valid JSON array of objects. Do not include any text outside of the JSON array. Each object in the array should have the following structure:
-        {
-            "question": "The question text",
-            "answers": {
-                "answer_a": "Answer A",
-                "answer_b": "Answer B",
-                "answer_c": "Answer C",
-                "answer_d": "Answer D"
-            },
-            "multiple_correct_answers": "false",
-            "correct_answers": {
-                "answer_a_correct": "true",
-                "answer_b_correct": "false",
-                "answer_c_correct": "false",
-                "answer_d_correct": "false"
-            }
-        }
-    `;
-
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`;
-
-    try {
-      const geminiResponse = await fetch(geminiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-        }),
-      });
-
-      if (!geminiResponse.ok) {
-        const errorText = await geminiResponse.text();
-        console.error("Gemini API Error:", errorText);
-        return new Response('Error fetching from Gemini API', { status: geminiResponse.status });
-      }
-
-      const geminiData = await geminiResponse.json();
-      const text = geminiData.candidates[0].content.parts[0].text;
-      const jsonText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-      
-      const headers = new Headers({
+    // Return a simple response for now
+    const res = new Response(JSON.stringify({ 
+      message: 'Worker is working!',
+      params: { limit, category, difficulty, tags }
+    }), {
+      headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*', // Or your specific domain for better security
-      });
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+    console.log('Response:', res.message);
+    return res;
+    // const geminiApiKey = env.GOOGLE_GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY;
 
-      return new Response(jsonText, { headers });
+    // if (!geminiApiKey) {
+    //     return new Response('API key not configured', { status: 500 });
+    // }
 
-    } catch (error) {
-      console.error("Worker Error:", error);
-      return new Response('An internal error occurred', { status: 500 });
-    }
+    // const prompt = `
+    //     Generate ${limit} quiz questions with the following criteria:
+    //     - Category: ${category}
+    //     - Difficulty: ${difficulty}
+    //     - Tags: ${tags.join(', ')}
+
+    //     Provide the output as a valid JSON array of objects. Do not include any text outside of the JSON array. Each object in the array should have the following structure:
+    //     {
+    //         "question": "The question text",
+    //         "answers": {
+    //             "answer_a": "Answer A",
+    //             "answer_b": "Answer B",
+    //             "answer_c": "Answer C",
+    //             "answer_d": "Answer D"
+    //         },
+    //         "multiple_correct_answers": "false",
+    //         "correct_answers": {
+    //             "answer_a_correct": "true",
+    //             "answer_b_correct": "false",
+    //             "answer_c_correct": "false",
+    //             "answer_d_correct": "false"
+    //         }
+    //     }
+    // `;
+
+    // const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`;
+
+    // try {
+    //   const geminiResponse = await fetch(geminiUrl, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //       contents: [{ parts: [{ text: prompt }] }],
+    //     }),
+    //   });
+
+    //   if (!geminiResponse.ok) {
+    //     const errorText = await geminiResponse.text();
+    //     console.error("Gemini API Error:", errorText);
+    //     return new Response('Error fetching from Gemini API', { status: geminiResponse.status });
+    //   }
+
+    //   const geminiData = await geminiResponse.json();
+    //   const text = geminiData.candidates[0].content.parts[0].text;
+    //   const jsonText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+      
+    //   const headers = new Headers({
+    //     'Content-Type': 'application/json',
+    //     'Access-Control-Allow-Origin': '*', // Or your specific domain for better security
+    //   });
+
+    //   return new Response(jsonText, { headers });
+
+    // } catch (error) {
+    //   console.error("Worker Error:", error);
+    //   return new Response('An internal error occurred', { status: 500 });
+    // }
   },
 };
 
