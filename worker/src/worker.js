@@ -13,14 +13,13 @@ export default {
       });
     }
 
-    // Parse query parameters from URL instead of JSON body
+    // Parse query parameters
     const url = new URL(request.url);
     const limit = url.searchParams.get('limit') || '10';
-    const category = url.searchParams.get('category') || '';
+    // const category = url.searchParams.get('category') || '';
     const difficulty = url.searchParams.get('difficulty') || '';
     const quizType = url.searchParams.get('quizType') || null;
 
-    // Fix the early return to include CORS headers
     if (!quizType || quizType === 'defaultType' || quizType === 'DefaultType') {
       return new Response('Quiz type is required', { 
         status: 400,
@@ -30,8 +29,6 @@ export default {
         }
       });
     }
-
-    console.log('Query params:', { limit, category, difficulty, quizType });
 
     const geminiApiKey = env.GOOGLE_GEMINI_API_KEY;
 
@@ -72,7 +69,6 @@ export default {
     const geminiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`;
 
     try {
-      console.log("Sending request to Gemini API with prompt:", prompt);
       const geminiResponse = await fetch(geminiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

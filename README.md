@@ -30,6 +30,7 @@ This is a quiz app that will test your coding knowledge! The app is built with R
 - TailwindCSS
 - Vite.js
 - Cloudflare
+- Google AI Studio
 
 ## Image
 
