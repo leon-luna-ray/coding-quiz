@@ -26,7 +26,7 @@ This is a quiz app that will test your coding knowledge! The app is built with R
 - HTML5
 - TailwindCSS
 - Vite.js
-- Cloudflare Workers
+- Cloudflare
 - Google AI Studio
 
 ## Image
