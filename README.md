@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a quiz app that will test your coding knowledge! The app is built with React.js with quiz quesions fetched from quizapi.io. Current quizes include HTML, JavaScript and Python.
+This is a quiz app that will test your coding knowledge! The app is built with React.js. Questions are generated with Google AI Studio
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/deb25954-fa4f-400f-8261-e10a5dac0572/deploy-status)](https://app.netlify.com/sites/coding-quiz-rldev/deploys)
 
@@ -20,16 +20,13 @@ This is a quiz app that will test your coding knowledge! The app is built with R
 - [Links](#links)
 
 ## Technologies
-### Language
 - JavaScript
-
-### Frontend
 - React.js
 - CSS3
 - HTML5
 - TailwindCSS
 - Vite.js
-- Cloudflare
+- Cloudflare Workers
 - Google AI Studio
 
 ## Image
