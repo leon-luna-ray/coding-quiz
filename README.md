@@ -8,7 +8,6 @@ This is a quiz app that will test your coding knowledge! The app is built with R
 
 [🚀 https://coding-quiz-rldev.netlify.app/](https://coding-quiz-rldev.netlify.app/)
 
-
 ## Table of Contents
 
 - [Image](#image)
