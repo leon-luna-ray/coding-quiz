@@ -8,7 +8,7 @@ preview_urls = false
 command = "npm install"
 
 [vars]
-ALLOWED_ORIGINS = "https://coding-quiz-rldev.netlify.app/"
+ALLOWED_ORIGINS = "https://coding-quiz-rldev.netlify.app"
 
 [observability.logs]
 enabled = true
