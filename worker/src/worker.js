@@ -10,6 +10,7 @@ export default {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': isAllowedOrigin ? origin : null,
     };
+
     if (request.method === 'OPTIONS') {
       return handleOptions(request, isAllowedOrigin, origin);
     }
@@ -24,17 +25,13 @@ export default {
     // Parse query parameters
     const url = new URL(request.url);
     const limit = url.searchParams.get('limit') || '10';
-    // const category = url.searchParams.get('category') || '';
     const difficulty = url.searchParams.get('difficulty') || '';
     const quizType = url.searchParams.get('quizType') || null;
 
     if (!quizType || quizType === 'defaultType' || quizType === 'DefaultType') {
       return new Response('Quiz type is required', {
         status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }
+        headers: corsHeaders,
       });
     }
 
@@ -43,10 +40,7 @@ export default {
     if (!geminiApiKey) {
       return new Response('API key not configured', {
         status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }
+        headers: corsHeaders,
       });
     }
 
@@ -90,10 +84,7 @@ export default {
         console.error("Gemini API Error:", errorText);
         return new Response(`Gemini API Error: ${errorText}`, {
           status: geminiResponse.status,
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          }
+          headers: corsHeaders,
         });
       }
 
@@ -101,21 +92,18 @@ export default {
       const text = geminiData.candidates[0].content.parts[0].text;
       const jsonText = text.replace(/```json/g, '').replace(/```/g, '').trim();
 
-      const headers = new Headers({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+      return new Response(jsonText, { 
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': isAllowedOrigin ? origin : null,
+        }
       });
-
-      return new Response(jsonText, { headers });
 
     } catch (error) {
       console.error("Worker Error:", error);
       return new Response('An internal error occurred', {
         status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }
+        headers: corsHeaders,
       });
     }
   },
@@ -140,7 +128,7 @@ function handleOptions(request, isAllowedOrigin, origin) {
   } else {
     return new Response(null, {
       headers: {
-        Allow: 'POST, OPTIONS',
+        Allow: 'GET, OPTIONS',
       },
     });
   }
