@@ -1,15 +1,23 @@
 export default {
   async fetch(request, env, ctx) {
+    const allowedOriginsString = env.ALLOWED_ORIGINS || '';
+    const allowedOrigins = allowedOriginsString.split(',');
+
+    const origin = request.headers.get('Origin');
+    const isAllowedOrigin = allowedOrigins.includes(origin);
+
+    const corsHeaders = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': isAllowedOrigin ? origin : null,
+    };
     if (request.method === 'OPTIONS') {
-      return handleOptions(request);
+      return handleOptions(request, isAllowedOrigin, origin);
     }
 
     if (request.method !== 'GET') {
-      return new Response('Expected GET request', { 
+      return new Response('Expected GET request', {
         status: 405,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        }
+        headers: corsHeaders,
       });
     }
 
@@ -21,7 +29,7 @@ export default {
     const quizType = url.searchParams.get('quizType') || null;
 
     if (!quizType || quizType === 'defaultType' || quizType === 'DefaultType') {
-      return new Response('Quiz type is required', { 
+      return new Response('Quiz type is required', {
         status: 400,
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +41,7 @@ export default {
     const geminiApiKey = env.GOOGLE_GEMINI_API_KEY;
 
     if (!geminiApiKey) {
-      return new Response('API key not configured', { 
+      return new Response('API key not configured', {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
@@ -80,7 +88,7 @@ export default {
       if (!geminiResponse.ok) {
         const errorText = await geminiResponse.text();
         console.error("Gemini API Error:", errorText);
-        return new Response(`Gemini API Error: ${errorText}`, { 
+        return new Response(`Gemini API Error: ${errorText}`, {
           status: geminiResponse.status,
           headers: {
             'Content-Type': 'application/json',
@@ -102,7 +110,7 @@ export default {
 
     } catch (error) {
       console.error("Worker Error:", error);
-      return new Response('An internal error occurred', { 
+      return new Response('An internal error occurred', {
         status: 500,
         headers: {
           'Content-Type': 'application/json',
@@ -113,20 +121,21 @@ export default {
   },
 };
 
-function handleOptions(request) {
-  const headers = request.headers;
+function handleOptions(request, isAllowedOrigin, origin) {
   if (
-    headers.get('Origin') !== null &&
-    headers.get('Access-Control-Request-Method') !== null &&
-    headers.get('Access-Control-Request-Headers') !== null
+    request.headers.get('Origin') !== null &&
+    request.headers.get('Access-Control-Request-Method') !== null &&
+    request.headers.get('Access-Control-Request-Headers') !== null
   ) {
     // Handle CORS preflight requests.
-    return new Response(null, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
+    const headers = {
+      'Access-Control-Allow-Origin': isAllowedOrigin ? origin : null,
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
-    },
+    };
+
+    return new Response(null, {
+      headers,
     });
   } else {
     return new Response(null, {
