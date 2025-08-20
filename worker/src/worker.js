@@ -1,14 +1,16 @@
-// This is the code for your Cloudflare Worker
 export default {
   async fetch(request, env, ctx) {
-    // Handle CORS preflight requests
-    // Handle CORS preflight requests
     if (request.method === 'OPTIONS') {
       return handleOptions(request);
     }
 
     if (request.method !== 'GET') {
-      return new Response('Expected GET request', { status: 405 });
+      return new Response('Expected GET request', { 
+        status: 405,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
     }
 
     // Parse query parameters from URL instead of JSON body
@@ -31,10 +33,16 @@ export default {
 
     console.log('Query params:', { limit, category, difficulty, quizType });
 
-    const geminiApiKey = env.GOOGLE_GEMINI_API_KEY || process.env.GOOGLE_GEMINI_API_KEY;
+    const geminiApiKey = env.GOOGLE_GEMINI_API_KEY;
 
     if (!geminiApiKey) {
-      return new Response('API key not configured', { status: 500 });
+      return new Response('API key not configured', { 
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
     }
 
     const prompt = `
@@ -61,7 +69,7 @@ export default {
         }
     `;
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey}`;
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`;
 
     try {
       console.log("Sending request to Gemini API with prompt:", prompt);
@@ -76,7 +84,13 @@ export default {
       if (!geminiResponse.ok) {
         const errorText = await geminiResponse.text();
         console.error("Gemini API Error:", errorText);
-        return new Response('Error fetching from Gemini API', { status: geminiResponse.status });
+        return new Response(`Gemini API Error: ${errorText}`, { 
+          status: geminiResponse.status,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          }
+        });
       }
 
       const geminiData = await geminiResponse.json();
@@ -92,7 +106,13 @@ export default {
 
     } catch (error) {
       console.error("Worker Error:", error);
-      return new Response('An internal error occurred', { status: 500 });
+      return new Response('An internal error occurred', { 
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
     }
   },
 };
