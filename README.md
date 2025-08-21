@@ -8,7 +8,6 @@ This is a quiz app that will test your coding knowledge on various programing la
 
 [🚀 https://coding-quiz-rldev.netlify.app/](https://coding-quiz-rldev.netlify.app/)
 
-
 ## Table of Contents
 
 - [Image](#image)
@@ -26,7 +25,7 @@ This is a quiz app that will test your coding knowledge on various programing la
 - HTML5
 - TailwindCSS
 - Vite.js
-- Cloudflare
+- Cloudflare Workers
 - Google AI Studio
 
 ## Image
