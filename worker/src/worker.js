@@ -45,8 +45,8 @@ export default {
     }
 
     const prompt = `
-        Generate ${limit} quiz questions with the following criteria:
-        - Category: ${quizType}
+        Generate ${limit} coding quiz questions with the following criteria:
+        - Language: ${quizType}
         - Difficulty: ${difficulty}
 
         Provide the output as a valid JSON array of objects. Do not include any text outside of the JSON array. Each object in the array should have the following structure:
