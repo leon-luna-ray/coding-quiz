@@ -73,6 +73,11 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
+                // Reset game state when fetching new quiz
+                setScore(0);
+                setQuestionIndex(0);
+                setQuestions(null);
+
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
             } catch (error) {
@@ -83,7 +88,7 @@ export const GameProvider = ({ children }) => {
         };
 
         fetchData();
-    }, []);
+    }, [quizType.name]);
 
     const value = {
         score,
