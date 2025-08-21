@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Start = () => {
   return (
-    <div className='container flex justify-center items-center'>
-      <div className='flex-col-2 items-center justify-center border h-max py-8 px-12 rounded-xl'>
+    <div className='container flex justify-center items-center h-full md:mt-[8rem]'>
+      <div className='flex-col-2 items-center justify-center border h-max p-[1rem] md:py-8 md:px-12'>
         <div>
-          <h1>Coding Quiz!</h1>
+          <h1 className='h3'>Coding Quiz!</h1>
         </div>
         <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
           <Link className='btn c' to='/quiz/c'>C</Link>
