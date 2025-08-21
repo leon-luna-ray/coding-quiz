@@ -3,6 +3,16 @@ import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
 const GameContext = createContext();
+const formatQuizName = (slug) => {
+    const specialCases = {
+        'cpp': 'C++',
+        'csharp': 'C#',
+        'javascript': 'JavaScript',
+        'typescript': 'TypeScript'
+    };
+
+    return specialCases[slug] || slug.charAt(0).toUpperCase() + slug.slice(1);
+};
 
 export const GameProvider = ({ children }) => {
     const location = useLocation();
@@ -15,40 +25,13 @@ export const GameProvider = ({ children }) => {
 
     // Memo
     const quizType = useMemo(() => {
-        switch (location.pathname) {
-            case '/quiz/html':
-                return 'HTML';
-            case '/quiz/javascript':
-                return 'JavaScript';
-            case '/quiz/python':
-                return 'Python';
-            case '/quiz/csharp':
-                return 'C#';
-            case '/quiz/cpp':
-                return 'C++';
-            case '/quiz/css':
-                return 'CSS';
-            case '/quiz/elixir':
-                return 'Elixir';
-            case '/quiz/fortran':
-                return 'Fortran';
-            case '/quiz/go':
-                return 'Go';
-            case '/quiz/java':
-                return 'Java';
-            case '/quiz/php':
-                return 'PHP';
-            case '/quiz/rust':
-                return 'Rust';
-            case '/quiz/sql':
-                return 'SQL';
-            case '/quiz/swift':
-                return 'Swift';
-            case '/quiz/typescript':
-                return 'TypeScript';
-            default:
-                return null;
-        }
+        const pathSegments = location.pathname.split('/');
+        const slug = pathSegments[2] || 'unknown'; // /quiz/:slug
+
+        return {
+            name: formatQuizName(slug),
+            slug: slug
+        };
     }, [location.pathname]);
 
     const currentQuestion = useMemo(
@@ -89,7 +72,7 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const data = await fetchQuiz(10, 'code', 'easy', quizType);
+                const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
             } catch (error) {
                 console.error(error);

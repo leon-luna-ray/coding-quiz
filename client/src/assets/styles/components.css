@@ -1,0 +1,48 @@
+.btn {
+    @apply text-white;
+}
+.btn.c {
+    @apply bg-c;
+}
+.btn.csharp {
+    @apply bg-csharp;
+}
+.btn.cpp {
+    @apply bg-cpp;
+}
+.btn.css {
+    @apply bg-css;
+}
+.btn.elixir {
+    @apply bg-elixir;
+}
+.btn.go {
+    @apply bg-go;
+}
+.btn.html {
+    @apply bg-html;
+}
+.btn.java {
+    @apply bg-java;
+}
+.btn.javascript {
+    @apply bg-javascript text-black;
+}
+.btn.php {
+    @apply bg-php;
+}
+.btn.python {
+    @apply bg-python;
+}
+.btn.rust {
+    @apply bg-rust;
+}
+.btn.sql {
+    @apply bg-sql;
+}
+.btn.swift {
+    @apply bg-swift;
+}
+.btn.typescript {
+    @apply bg-typescript;
+}

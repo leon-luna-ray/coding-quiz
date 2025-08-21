@@ -9,21 +9,21 @@ const Start = () => {
           <h1>Coding Quiz!</h1>
         </div>
         <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
-          <Link className='btn tertiary bg-c' to='/quiz/c'>C</Link>
-          <Link className='btn secondary bg-csharp' to='/quiz/csharp'>C#</Link>
-          <Link className='btn bg-cpp' to='/quiz/cpp'>C++</Link>
-          <Link className='btn bg-css' to='/quiz/css'>CSS</Link>
-          <Link className='btn bg-elixir' to='/quiz/elixir'>Elixir</Link>
-          <Link className='btn bg-go' to='/quiz/go'>Go</Link>
-          <Link className='btn tertiary bg-html' to='/quiz/html'>HTML</Link>
-          <Link className='btn bg-java' to='/quiz/java'>Java</Link>
-          <Link className='btn secondary bg-javascript' to='/quiz/javascript'>JavaScript</Link>
-          <Link className='btn bg-php' to='/quiz/php'>PHP</Link>
-          <Link className='btn bg-python' to='/quiz/python'>Python</Link>
-          <Link className='btn bg-rust' to='/quiz/rust'>Rust</Link>
-          <Link className='btn bg-sql' to='/quiz/sql'>SQL</Link>
-          <Link className='btn bg-swift' to='/quiz/swift'>Swift</Link>
-          <Link className='btn bg-typescript' to='/quiz/typescript'>TypeScript</Link>
+          <Link className='btn c' to='/quiz/c'>C</Link>
+          <Link className='btn csharp' to='/quiz/csharp'>C#</Link>
+          <Link className='btn cpp' to='/quiz/cpp'>C++</Link>
+          <Link className='btn css' to='/quiz/css'>CSS</Link>
+          <Link className='btn elixir' to='/quiz/elixir'>Elixir</Link>
+          <Link className='btn go' to='/quiz/go'>Go</Link>
+          <Link className='btn html' to='/quiz/html'>HTML</Link>
+          <Link className='btn java' to='/quiz/java'>Java</Link>
+          <Link className='btn secondary javascript' to='/quiz/javascript'>JavaScript</Link>
+          <Link className='btn php' to='/quiz/php'>PHP</Link>
+          <Link className='btn python' to='/quiz/python'>Python</Link>
+          <Link className='btn rust' to='/quiz/rust'>Rust</Link>
+          <Link className='btn sql' to='/quiz/sql'>SQL</Link>
+          <Link className='btn swift' to='/quiz/swift'>Swift</Link>
+          <Link className='btn typescript' to='/quiz/typescript'>TypeScript</Link>
         </div>
       </div>
     </div>
