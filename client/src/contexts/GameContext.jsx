@@ -22,8 +22,32 @@ export const GameProvider = ({ children }) => {
                 return 'JavaScript';
             case '/quiz/python':
                 return 'Python';
+            case '/quiz/csharp':
+                return 'C#';
+            case '/quiz/cpp':
+                return 'C++';
+            case '/quiz/css':
+                return 'CSS';
+            case '/quiz/elixir':
+                return 'Elixir';
+            case '/quiz/fortran':
+                return 'Fortran';
+            case '/quiz/go':
+                return 'Go';
+            case '/quiz/java':
+                return 'Java';
+            case '/quiz/php':
+                return 'PHP';
+            case '/quiz/rust':
+                return 'Rust';
+            case '/quiz/sql':
+                return 'SQL';
+            case '/quiz/swift':
+                return 'Swift';
+            case '/quiz/typescript':
+                return 'TypeScript';
             default:
-                return 'DefaultType';
+                return null;
         }
     }, [location.pathname]);
 
@@ -85,7 +109,7 @@ export const GameProvider = ({ children }) => {
         currentQuestionChoices,
         setScore,
         handleAnswer,
-      };
+    };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };

@@ -8,17 +8,7 @@ a {
 
 button,
 .btn {
-    @apply py-4 text-center text-[1.5rem] text-slate rounded-lg gradient-blue hover:cursor-pointer zoom-in-out hover:shadow-glow;
-}
-
-button.secondary,
-.btn.secondary {
-    @apply gradient-yellow;
-}
-
-button.tertiary,
-.btn.tertiary {
-    @apply gradient-orange;
+    @apply py-4 text-center text-[1.5rem] text-slate rounded-lg  hover:cursor-pointer zoom-in-out hover:shadow-glow;
 }
 
 a.btn {
