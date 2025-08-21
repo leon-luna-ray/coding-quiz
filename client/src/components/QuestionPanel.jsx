@@ -5,10 +5,10 @@ const QuestionPanel = () => {
   const { currentQuestion, score } = useGameContext();
 
   return (
-    <div className='flex  flex-col-reverse gap-y-[2rem] md:grid md:grid-cols-2 gap-x-8'>
-      <h1 className='!font-red-hat leading-12! h4 md:h3'>{currentQuestion.question}</h1>
+    <div>
+      <p className='leading-[130%] !font-space text-[2rem] text-white tracking-[0.4px]'>{currentQuestion.question}</p>
       <div className="flex justify-center items-center">
-      <h1 className='h2'>Score: {score}</h1>
+      {/* <p className='h2'>Score: {score}</p> */}
       </div>
     </div>
   );
