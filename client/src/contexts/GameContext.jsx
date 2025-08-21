@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
 const GameContext = createContext();
+
 const formatQuizName = (slug) => {
     const specialCases = {
         'cpp': 'C++',
