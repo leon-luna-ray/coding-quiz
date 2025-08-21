@@ -1,11 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useGameContext } from '@/contexts/GameContext';
 
 const Header = () => {
+    const location = useLocation();
+    const { currentQuestion, score } = useGameContext();
+
     return (
-        <header className='absolute top-0 w-full'>
-            <div className="container flex items-center justify-between py-8">
-                <Link to='/' className="h3 hover:no-underline">Coding Quiz!</Link>
+        <header className={location.pathname === '/' ? 'hidden' : ''}>
+            <div className="container flex items-center justify-between py-[1rem] text-[2rem] text-white font-syne">
+                <Link to='/' className="hover:no-underline">Coding Quiz!</Link>
+                <p className=''>Score: {score}</p>
             </div>
         </header>
     )

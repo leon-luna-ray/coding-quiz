@@ -1,6 +1,6 @@
 export default {
   async fetch(request, env, ctx) {
-    const allowedOriginsString = env.ALLOWED_ORIGINS || '';
+    const allowedOriginsString = env.ALLOWED_ORIGINS || 'http://localhost:5173';
     const allowedOrigins = allowedOriginsString.split(',');
 
     const origin = request.headers.get('Origin');
@@ -45,8 +45,8 @@ export default {
     }
 
     const prompt = `
-        Generate ${limit} quiz questions with the following criteria:
-        - Category: ${quizType}
+        Generate ${limit} coding quiz questions with the following criteria:
+        - Language: ${quizType}
         - Difficulty: ${difficulty}
 
         Provide the output as a valid JSON array of objects. Do not include any text outside of the JSON array. Each object in the array should have the following structure:
