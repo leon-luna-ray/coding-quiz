@@ -1,6 +1,6 @@
 export default {
   async fetch(request, env, ctx) {
-    const allowedOriginsString = env.ALLOWED_ORIGINS || '';
+    const allowedOriginsString = env.ALLOWED_ORIGINS || 'http://localhost:5173';
     const allowedOrigins = allowedOriginsString.split(',');
 
     const origin = request.headers.get('Origin');
