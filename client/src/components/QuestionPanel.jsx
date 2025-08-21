@@ -1,4 +1,5 @@
 import React from 'react';
+import { useGameContext } from '@/contexts/GameContext';
 
 const QuestionPanel = () => {
   const { currentQuestion, score } = useGameContext();

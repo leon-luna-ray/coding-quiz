@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useGameContext } from '@/contexts/GameContext';
+import { GameProvider, useGameContext } from '@/contexts/GameContext';
 
-const Header = () => {
+const HeaderContent = () => {
     const location = useLocation();
-    const { currentQuestion, score } = useGameContext();
+    const { score } = useGameContext();
 
     return (
         <header className={location.pathname === '/' ? 'hidden' : ''}>
@@ -16,4 +16,13 @@ const Header = () => {
     )
 }
 
+const Header = () => {
+    return (
+        <GameProvider>
+            <HeaderContent />
+        </GameProvider>
+    )
+}
+
 export default Header;
+
