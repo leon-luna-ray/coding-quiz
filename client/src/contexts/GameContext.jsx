@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo, use } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
@@ -23,6 +23,8 @@ export const GameProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
+    const [userAnswers, setUserAnswers] = useState([]);
+    const [isCorrect, setIsCorrect] = useState(null);
 
     // Memo
     const quizType = useMemo(() => {
@@ -56,20 +58,41 @@ export const GameProvider = ({ children }) => {
     );
 
     // Methods
-    const isCorrect = (userChoice, answers) => {
+    const isInputCorrect = (userChoice, answers) => {
         const correctAnswer = answers[`${userChoice}_correct`];
         return correctAnswer === "true";
     };
-
-    const handleAnswer = (userChoice) => {
-        if (isCorrect(userChoice, currentQuestion.correct_answers)) {
-            setScore(score + 1);
-            console.log(`Correct! Score: ${score + 1}`);
-        }
-        else {
-            console.log(`Incorrect! Score: ${score}`);
-        }
+    const handleNextQuestion = () => {
+        setIsCorrect(null);
         setQuestionIndex(questionIndex + 1);
+    };
+    const handleAnswerSubmit = (userChoice) => {
+        const isCorrect = isInputCorrect(userChoice, currentQuestion.answers);
+
+        const userInput = {
+            id: currentQuestion.id,
+            question: currentQuestion.question,
+            userAnswer: userChoice,
+            isCorrect: isCorrect
+        }
+
+        setUserAnswers((prev) => [...prev, userInput]);
+
+        if (isCorrect) {
+            setScore(score + 1);
+            setIsCorrect(true);
+        } else {
+            setIsCorrect(false);
+        }
+
+        // handleNextQuestion();
+    };
+
+
+    const resetGame = () => {
+        setScore(0);
+        setQuestionIndex(0);
+        setQuestions(null);
     };
 
     // Lifecycle
@@ -77,11 +100,7 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                // Reset game state when fetching new quiz
-                setScore(0);
-                setQuestionIndex(0);
-                setQuestions(null);
-
+                resetGame();
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
             } catch (error) {
@@ -101,7 +120,8 @@ export const GameProvider = ({ children }) => {
         currentQuestion,
         currentQuestionChoices,
         setScore,
-        handleAnswer,
+        handleAnswerSubmit,
+        isCorrect,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
