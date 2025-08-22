@@ -1,6 +1,9 @@
 .btn {
     @apply text-white;
 }
+.btn.disabled {
+    @apply pointer-events-none opacity-50;
+}
 .btn.c {
     @apply bg-c;
 }

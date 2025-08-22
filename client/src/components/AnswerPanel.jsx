@@ -4,7 +4,7 @@ import { useGameContext } from '@/contexts/GameContext';
 
 
 const AnswerPanel = () => {
-  const { currentQuestionChoices, isCorrect } = useGameContext();
+  const { currentQuestionChoices, isCorrect, handleNextQuestion } = useGameContext();
 
   const buttons = currentQuestionChoices.map((choice, index) => {
     const letter = choice[0];
@@ -20,8 +20,9 @@ const AnswerPanel = () => {
 
   return (
     <div className="flex flex-col gap-[2rem]">
-      <div className={`flex flex-col ${isCorrect === null ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+      <div className={`flex gap-[2rem] justify-between ${isCorrect === null ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <h2 >{responseText}</h2>
+        <button className={`btn css px-[1rem]`} onClick={handleNextQuestion}>Continue</button>
       </div>
       <div className='grid md:grid-cols-2 gap-4'>{buttons}</div>
     </div>

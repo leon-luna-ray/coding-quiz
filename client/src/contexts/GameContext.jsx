@@ -57,13 +57,13 @@ export const GameProvider = ({ children }) => {
         [currentQuestion]
     );
 
-    const correctIndex = useMemo(() => {
-        console.log('Calculating correct index');
-        console.log('Current Question:', currentQuestion);
-        if (isCorrect === null) return null;
-        if (!currentQuestion) return null;
-        return Object.keys(currentQuestion.correct_answers).findIndex((key) => currentQuestion.correct_answers[key] === "true");
-    }, [currentQuestion, isCorrect]);
+    // const correctIndex = useMemo(() => {
+    //     console.log('Calculating correct index');
+    //     console.log('Current Question:', currentQuestion);
+    //     if (isCorrect === null) return null;
+    //     if (!currentQuestion) return null;
+    //     return Object.keys(currentQuestion.correct_answers).findIndex((key) => currentQuestion.correct_answers[key] === "true");
+    // }, [currentQuestion, isCorrect]);
 
     // Methods
     const isInputCorrect = (userChoice, answers) => {
@@ -127,7 +127,7 @@ export const GameProvider = ({ children }) => {
         handleAnswerSubmit,
         handleNextQuestion,
         isCorrect,
-        correctIndex,
+        // correctIndex,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
