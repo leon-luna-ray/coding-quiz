@@ -5,9 +5,9 @@ import { capitalizeLastLetter } from '@/lib/text';
 const AnswerButton = ({ letter, text }) => {
   const { handleAnswer, quizType } = useGameContext();
   return (
-    <button className={`w-full btn ${quizType.slug}`} onClick={() => { handleAnswer(letter); }}>
-      <span>{capitalizeLastLetter(letter)}. </span>
-      <span>{text}</span>
+    <button className={`w-full btn flex gap-4 items-center justify-center ${quizType.slug}`} onClick={() => { handleAnswer(letter); }}>
+      <p className='font-[500]'>{capitalizeLastLetter(letter)}:</p>
+      <p className='font-jetbrains'>{text}</p>
     </button>
   );
 };

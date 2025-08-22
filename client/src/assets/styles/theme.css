@@ -2,6 +2,7 @@
 @theme {
   --font-syne: Syne Mono, monospace;
   --font-space: Red Hat Display, sans-serif;
+  --font-jetbrains: JetBrains Mono, monospace;
 
   --shadow-glow: 0 0.01rem 1rem 0 #fff;
   --shadow-glow-orange: 0 0.4rem 1.4rem 0 rgba(255, 0, 0, 0.5);

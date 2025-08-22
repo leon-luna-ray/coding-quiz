@@ -3,7 +3,7 @@ import IconCode from '@/components/icons/IconCode'
 
 const LoadingScreen = () => {
     return (
-        <div className='container flex justify-center items-center h-screen w-screen top-0 left-0 fixed flex-col-4'>
+        <div className='mx-auto flex justify-center items-center h-screen w-screen top-0 left-0 fixed flex-col-4'>
             <div className="flex justify-center w-full max-w-[300px] animate-pulse">
                 <IconCode />
             </div>

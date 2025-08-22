@@ -14,7 +14,7 @@ const App = () => {
       <div className="flex flex-col justify-between h-screen">
       <div className="relative">
           <Header />
-          <main className="">
+          <main className="w-full">
             <Routes>
               <Route path="/" element={<Start />} />
               <Route path="/quiz/c" element={<Game />} />
