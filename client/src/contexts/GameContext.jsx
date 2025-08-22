@@ -29,7 +29,7 @@ export const GameProvider = ({ children }) => {
     // Memo
     const quizType = useMemo(() => {
         const pathSegments = location.pathname.split('/');
-        const slug = pathSegments[2] || 'unknown'; // /quiz/:slug
+        const slug = pathSegments[2] || 'unknown';
 
         return {
             name: formatQuizName(slug),
@@ -57,6 +57,14 @@ export const GameProvider = ({ children }) => {
         [currentQuestion]
     );
 
+    const correctIndex = useMemo(() => {
+        console.log('Calculating correct index');
+        console.log('Current Question:', currentQuestion);
+        if (isCorrect === null) return null;
+        if (!currentQuestion) return null;
+        return Object.keys(currentQuestion.correct_answers).findIndex((key) => currentQuestion.correct_answers[key] === "true");
+    }, [currentQuestion, isCorrect]);
+
     // Methods
     const isInputCorrect = (userChoice, answers) => {
         const correctAnswer = answers[`${userChoice}_correct`];
@@ -76,16 +84,12 @@ export const GameProvider = ({ children }) => {
             isCorrect: isCorrect
         }
 
+        setIsCorrect(isCorrect);
         setUserAnswers((prev) => [...prev, userInput]);
 
         if (isCorrect) {
             setScore(score + 1);
-            setIsCorrect(true);
-        } else {
-            setIsCorrect(false);
         }
-
-        // handleNextQuestion();
     };
 
 
@@ -121,7 +125,9 @@ export const GameProvider = ({ children }) => {
         currentQuestionChoices,
         setScore,
         handleAnswerSubmit,
+        handleNextQuestion,
         isCorrect,
+        correctIndex,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

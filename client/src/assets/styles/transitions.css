@@ -1,0 +1,3 @@
+@utility transition-all-300 {
+    @apply motion-safe:transition-all motion-safe:duration-300 motion-safe:ease-in-out;
+}
