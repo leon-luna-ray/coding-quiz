@@ -19,10 +19,7 @@ const GameContent = () => {
   );
 };
 
-const Game = () => (
-  <GameProvider>
-    <GameContent />
-  </GameProvider>
-);
+
+const Game = () => <GameContent />;
 
 export default Game;
