@@ -18,6 +18,17 @@ const Start = () => {
             </div>
           </div>
           <div className="flex flex-col">
+            <h2 className='label-text text-center'>C</h2>
+            <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
+              <Link className='btn c' to='/quiz/c'>C</Link>
+              <Link className='btn cpp' to='/quiz/cpp'>C++</Link>
+              <Link className='btn csharp' to='/quiz/csharp'>C#</Link>
+              <Link className='btn csh' to='/quiz/csh'>C Shell</Link>
+              <Link className='btn holyc' to='/quiz/holyc'>HolyC</Link>
+              <Link className='btn objective-c' to='/quiz/objective-c'>Objective-C</Link>
+            </div>
+          </div>
+          <div className="flex flex-col">
             <h2 className='label-text text-center'>Multi-paradigm</h2>
             <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
 
@@ -32,36 +43,23 @@ const Start = () => {
           <div className="flex flex-col">
             <h2 className='label-text text-center'>Functional</h2>
             <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
-              <Link className='btn haskell' to='/quiz/haskell'>Haskell</Link>
-              <Link className='btn haskell' to='/quiz/haskell'>Haskell</Link>
+              <Link className='btn clojure' to='/quiz/clojure'>Clojure</Link>
+              <Link className='btn elixir' to='/quiz/elixir'>Elixir</Link>
+              <Link className='btn elm' to='/quiz/elm'>Elm</Link>
               <Link className='btn erlang' to='/quiz/erlang'>Erlang</Link>
               <Link className='btn fsharp' to='/quiz/fsharp'>F#</Link>
-              <Link className='btn clojure' to='/quiz/clojure'>Clojure</Link>
-              <Link className='btn elm' to='/quiz/elm'>Elm</Link>
+              <Link className='btn haskell' to='/quiz/haskell'>Haskell</Link>
             </div>
           </div>
-          <div className="flex flex-col">
-            <h2 className='label-text text-center'>C</h2>
-            <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
-              <Link className='btn c' to='/quiz/c'>C</Link>
-              <Link className='btn cpp' to='/quiz/cpp'>C++</Link>
-              <Link className='btn csharp' to='/quiz/csharp'>C#</Link>
-              <Link className='btn objective-c' to='/quiz/objective-c'>Objective-C</Link>
-              <Link className='btn csh' to='/quiz/csh'>C Shell</Link>
-              <Link className='btn holyc' to='/quiz/holyc'>HolyC</Link>
-            </div>
-          </div>
-
-
           <div className="flex flex-col">
             <h2 className='label-text text-center'>Vintage</h2>
             <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
+              <Link className='btn assembly' to='/quiz/assembly'>Assembly</Link>
+              <Link className='btn basic' to='/quiz/basic'>BASIC</Link>
               <Link className='btn cobol' to='/quiz/cobol'>COBOL</Link>
               <Link className='btn fortran' to='/quiz/fortran'>FORTRAN</Link>
-              <Link className='btn pascal' to='/quiz/pascal'>Pascal</Link>
-              <Link className='btn basic' to='/quiz/basic'>BASIC</Link>
               <Link className='btn lisp' to='/quiz/common-lisp'>Lisp</Link>
-              <Link className='btn assembly' to='/quiz/assembly'>Assembly</Link>
+              <Link className='btn pascal' to='/quiz/pascal'>Pascal</Link>
             </div>
           </div>
           <div className="flex flex-col">

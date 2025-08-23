@@ -1168,4 +1168,20 @@
     --color-zig: #ec915c;
     --color-zil: #dc75e5;
     --color-zimpl: #d67711;
+    --color-cpp: #00599C;
+    --color-csharp: #239120;
+    --color-objective-c: #438EFF;
+    --color-csh: #4E2A8E;
+    --color-holyc: #FFB300;
+    --color-haskell: #5e5086;
+    --color-erlang: #A90533;
+    --color-fsharp: #378BBA;
+    --color-clojure: #5881D8;
+    --color-scala: #DC322F;
+    --color-ocaml: #EC7A00;
+    --color-elm: #1293D8;
+    --color-emojicode: #FFD700;
+    --color-jsfuck: #F7DF1E;
+    --color-shakespeare: #B0A160;
+    --color-false: #222222;
 }
