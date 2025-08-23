@@ -109,7 +109,7 @@
 }
 
 .btn.lisp {
-    @apply bg-common-lisp;
+    @apply bg-common-lisp border-[1px] border-white/50;
 }
 
 .btn.objective-c {
@@ -150,4 +150,8 @@
 
 .btn.typescript {
     @apply bg-typescript;
+}
+
+.language-icon {
+  @apply font-jetbrains !text-[12rem] !font-bold;
 }
