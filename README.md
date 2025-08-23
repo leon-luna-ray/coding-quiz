@@ -8,7 +8,7 @@
 
 An interactive coding quiz application that tests your programming knowledge across **15 different programming languages**! This project leverages **Google AI Studio (Gemini 2.5 Flash)** to dynamically generate unlimited, contextual quiz questions for each programming language.
 
-This is my first full-stack project built independently with AI, showcasing modern web development practices, serverless architecture, and AI integration.
+A full-stack AI powered project showcasing modern web development practices, serverless architecture, and AI integration.
 
 ## Key Features
 
