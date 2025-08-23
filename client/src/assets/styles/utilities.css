@@ -64,3 +64,7 @@
 @utility zoom-in-out {
   @apply transition-transform transform hover:scale-105 hover:cursor-pointer;
 }
+
+@utility label-text {
+  @apply !text-[1rem] font-medium uppercase leading-[130%] !font-space;
+}
