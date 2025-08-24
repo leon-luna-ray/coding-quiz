@@ -109,7 +109,7 @@
 }
 
 .btn.lisp {
-    @apply bg-common-lisp border-[1px] border-white/50;
+    @apply bg-common-lisp;
 }
 
 .btn.objective-c {
