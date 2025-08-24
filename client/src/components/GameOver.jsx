@@ -10,7 +10,7 @@ const GameOver = () => {
         <h1>Game Over</h1>
         <h2>Score</h2>
         <h1>{score}</h1>
-        <Link className='btn w-max px-8' to='/'>Home</Link>
+        <Link className='btn w-max px-8 border-[2px] border-white' to='/'>Home</Link>
       </div>
     </div>
   );
