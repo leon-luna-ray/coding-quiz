@@ -67,7 +67,8 @@ A full-stack AI powered project showcasing modern web development practices, ser
 
 ## 📸 Screenshot
 
-![Coding Quiz Application](./client/src/assets/img/quizsn.png)
+![Coding Quiz Application](./client/src/assets/img/scn2.png)
+![Coding Quiz Application](./client/src/assets/img/scn1.png)
 
 ## 🚀 Getting Started
 
