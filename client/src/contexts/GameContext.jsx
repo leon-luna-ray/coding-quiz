@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useMemo, use } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
@@ -23,13 +23,11 @@ export const GameProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
-    const [userAnswers, setUserAnswers] = useState([]);
-    const [isCorrect, setIsCorrect] = useState(null);
 
     // Memo
     const quizType = useMemo(() => {
         const pathSegments = location.pathname.split('/');
-        const slug = pathSegments[2] || 'unknown';
+        const slug = pathSegments[2] || 'unknown'; // /quiz/:slug
 
         return {
             name: formatQuizName(slug),
@@ -57,46 +55,17 @@ export const GameProvider = ({ children }) => {
         [currentQuestion]
     );
 
-    // const correctIndex = useMemo(() => {
-    //     console.log('Calculating correct index');
-    //     console.log('Current Question:', currentQuestion);
-    //     if (isCorrect === null) return null;
-    //     if (!currentQuestion) return null;
-    //     return Object.keys(currentQuestion.correct_answers).findIndex((key) => currentQuestion.correct_answers[key] === "true");
-    // }, [currentQuestion, isCorrect]);
-
     // Methods
-    const isInputCorrect = (userChoice, answers) => {
+    const isCorrect = (userChoice, answers) => {
         const correctAnswer = answers[`${userChoice}_correct`];
         return correctAnswer === "true";
     };
-    const handleNextQuestion = () => {
-        setIsCorrect(null);
-        setQuestionIndex(questionIndex + 1);
-    };
-    const handleAnswerSubmit = (userChoice) => {
-        const isCorrect = isInputCorrect(userChoice, currentQuestion.answers);
 
-        const userInput = {
-            id: currentQuestion.id,
-            question: currentQuestion.question,
-            userAnswer: userChoice,
-            isCorrect: isCorrect
-        }
-
-        setIsCorrect(isCorrect);
-        setUserAnswers((prev) => [...prev, userInput]);
-
-        if (isCorrect) {
+    const handleAnswer = (userChoice) => {
+        if (isCorrect(userChoice, currentQuestion.correct_answers)) {
             setScore(score + 1);
         }
-    };
-
-
-    const resetGame = () => {
-        setScore(0);
-        setQuestionIndex(0);
-        setQuestions(null);
+        setQuestionIndex(questionIndex + 1);
     };
 
     // Lifecycle
@@ -104,7 +73,11 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                resetGame();
+                // Reset game state when fetching new quiz
+                setScore(0);
+                setQuestionIndex(0);
+                setQuestions(null);
+
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
             } catch (error) {
@@ -124,10 +97,7 @@ export const GameProvider = ({ children }) => {
         currentQuestion,
         currentQuestionChoices,
         setScore,
-        handleAnswerSubmit,
-        handleNextQuestion,
-        isCorrect,
-        // correctIndex,
+        handleAnswer,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
