@@ -10,7 +10,7 @@ const Start = () => {
         </div>
         <div className="flex flex-col w-full">
 
-          <h2 className='label-text !leading-[300%] text-center'>Core</h2>
+          <h2 className='label-text !leading-[300%] text-center'>Select a language</h2>
           <div className='w-full grid grid-cols-3 gap-4'>
             <Link className='btn c' to='/quiz/c'>C</Link>
             <Link className='btn csharp' to='/quiz/csharp'>C#</Link>
@@ -29,7 +29,7 @@ const Start = () => {
             <Link className='btn typescript' to='/quiz/typescript'>TypeScript</Link>
           </div>
         </div>
-        <div className="flex flex-col w-full">
+        {/* <div className="flex flex-col w-full">
           <h2 className='label-text !leading-[300%] text-center'>Vintage</h2>
           <div className='w-full grid grid-cols-3 gap-4'>
             <Link className='btn assembly' to='/quiz/assembly'>Assembly</Link>
@@ -39,7 +39,7 @@ const Start = () => {
             <Link className='btn lisp' to='/quiz/common-lisp'>Lisp</Link>
             <Link className='btn pascal' to='/quiz/pascal'>Pascal</Link>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* <div className="flex-col-2">
