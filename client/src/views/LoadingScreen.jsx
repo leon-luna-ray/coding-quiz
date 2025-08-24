@@ -8,7 +8,7 @@ const LoadingScreen = () => {
 
   return (
     <div className='mx-auto flex justify-center items-center h-screen w-screen top-0 left-0 fixed flex-col-4'>
-      <div className="flex justify-center w-full max-w-[300px] animate-pulse">
+      <div className="flex justify-center w-full animate-pulse">
         <span
           style={{ fontSize: '4rem', fontFamily: 'inherit' }}
           className="language-icon text-white"
