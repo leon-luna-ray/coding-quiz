@@ -21,7 +21,7 @@ const AnswerPanel = () => {
 
   return (
     <div className="flex flex-col gap-[4rem]">
-      <h2 className='text-center'>Correct</h2>
+      {/* <h2 className='text-center'>Correct</h2> */}
 
       <div className='grid md:grid-cols-2 gap-4'>{buttons}</div>
       <div className="flex justify-center items-center">

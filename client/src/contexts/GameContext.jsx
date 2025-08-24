@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo, use } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
@@ -55,23 +55,31 @@ export const GameProvider = ({ children }) => {
         },
         [currentQuestion]
     );
+
+    const isCorrectResponse = useMemo(() => {
+        // Only check if user has responded to this question
+        const userResponse = userResponses[questionIndex];
+        if (!userResponse) return null;
+        console.log(userResponse);
+        return userResponse.isCorrect;
+    }, [questionIndex, userResponses]);
+
+    // Methods
     const getCorrectAnswerKey = (answers) => {
         return Object.keys(answers).find(key => answers[key] === "true");
     };
-    // Methods
+
     const handleAnswerSubmit = (userChoice) => {
         const correctKey = getCorrectAnswerKey(currentQuestion.correct_answers);
-        const correctAnswerValue = currentQuestion.answers[correctKey];
+        const correctAnswer = currentQuestion.answers[correctKey];
         const isCorrect = correctKey === userChoice;
-        console.log('Correct answer:', correctKey, correctAnswerValue);
+
         const response = {
             question: currentQuestion,
             userChoice: currentQuestion.answers[userChoice],
-            correctAnswer: correctAnswerValue,
+            correctAnswer,
             isCorrect,
         };
-        console.log('User response:', response);
-
         setUserResponses([...userResponses, response]);
 
         if (isCorrect) {
@@ -116,6 +124,7 @@ export const GameProvider = ({ children }) => {
         quizType,
         currentQuestion,
         currentQuestionChoices,
+        isCorrectResponse,
         setScore,
         handleAnswerSubmit,
         handleNextQuestion,
