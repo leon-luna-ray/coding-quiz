@@ -29,7 +29,7 @@ export default {
     const limit = url.searchParams.get('limit') || '10';
     const difficulty = url.searchParams.get('difficulty') || '';
     const quizType = url.searchParams.get('quizType') || null;
-    const mock = true;
+    const mock = false;
 
     if (mock) {
       return new Response(JSON.stringify(sampleResponse), {
