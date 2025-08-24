@@ -12,17 +12,14 @@ const GameContent = () => {
   if (!currentQuestion) return <GameOver />;
 
   return (
-    <div className="container flex-col-4 pt-[1.25rem] md:pt-[3rem]">
+    <div className="container flex-col-2 pt-[1.25rem] md:pt-[3rem]">
       <QuestionPanel className='question-panel' />
       <AnswerPanel className='answer-panel' />
     </div>
   );
 };
 
-const Game = () => (
-  <GameProvider>
-    <GameContent />
-  </GameProvider>
-);
+
+const Game = () => <GameContent />;
 
 export default Game;

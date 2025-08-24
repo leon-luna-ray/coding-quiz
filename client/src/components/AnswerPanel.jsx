@@ -1,22 +1,32 @@
 import React from 'react';
 import AnswerButton from '@/components/AnswerButton';
 import { useGameContext } from '@/contexts/GameContext';
+import IconNext from '@/components/icons/IconNext';
 
 
 const AnswerPanel = () => {
-  const { currentQuestionChoices } = useGameContext();
+  const { currentQuestionChoices, handleNextQuestion, isResponded } = useGameContext();
 
   const buttons = currentQuestionChoices.map((choice, index) => {
     const letter = choice[0];
     const text = choice[1];
 
+
     if (text === null) return;
 
-    return <AnswerButton key={index} letter={letter} text={text} />;
-  })
+    return <AnswerButton key={index} letter={letter} text={text} index={index} />;
+  });
 
   return (
-    <div className='grid md:grid-cols-2 gap-4'>{buttons}</div>
+    <div className="flex flex-col gap-[4rem]">
+      <div className='grid md:grid-cols-2 gap-4'>{buttons}</div>
+      <div className={`flex justify-center items-center transition-all-300 ${isResponded ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <button className={`btn border-[2px] border-white px-[1rem] flex gap-[0.5rem] items-center w-max`} onClick={handleNextQuestion} aria-label="Next question">
+          <p>Next</p>
+          <IconNext />
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -23,49 +23,52 @@ export const GameProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
+    const [userResponses, setUserResponses] = useState([]);
 
     // Memo
     const quizType = useMemo(() => {
         const pathSegments = location.pathname.split('/');
         const slug = pathSegments[2] || 'unknown'; // /quiz/:slug
-
         return {
             name: formatQuizName(slug),
-            slug: slug
+            slug
         };
     }, [location.pathname]);
 
-    const currentQuestion = useMemo(
-        () => {
-            if (questions) {
-                return questions[questionIndex];
-            }
-            return null;
-        },
-        [questions, questionIndex]
-    );
+    const currentQuestion = questions ? questions[questionIndex] : null;
 
-    const currentQuestionChoices = useMemo(
-        () => {
-            if (currentQuestion) {
-                return Object.keys(currentQuestion.answers).map((key) => [key, currentQuestion.answers[key]]);
-            }
-            return null;
-        },
-        [currentQuestion]
-    );
+    const currentQuestionChoices = currentQuestion
+        ? Object.entries(currentQuestion.answers)
+        : null;
+
+    const userResponse = userResponses[questionIndex];
+    const isCorrectResponse = userResponse ? userResponse.isCorrect : null;
+    const isResponded = userResponse !== undefined;
 
     // Methods
-    const isCorrect = (userChoice, answers) => {
-        const correctAnswer = answers[`${userChoice}_correct`];
-        return correctAnswer === "true";
-    };
+    const getCorrectAnswerKey = (answers) => Object.keys(answers).find(key => answers[key] === "true");
+    const correctAnswerKey = currentQuestion ? getCorrectAnswerKey(currentQuestion.correct_answers) : null;
 
-    const handleAnswer = (userChoice) => {
-        if (isCorrect(userChoice, currentQuestion.correct_answers)) {
-            setScore(score + 1);
-        }
-        setQuestionIndex(questionIndex + 1);
+    const handleAnswerSubmit = (userChoice) => {
+        if (!currentQuestion) return;
+        const correctKey = getCorrectAnswerKey(currentQuestion.correct_answers);
+        const correctAnswer = currentQuestion.answers[correctKey];
+        const isCorrect = correctKey === userChoice;
+        const response = {
+            question: currentQuestion,
+            userChoice: currentQuestion.answers[userChoice],
+            correctAnswer,
+            isCorrect,
+        };
+        setUserResponses((prev) => [...prev, response]);
+        if (isCorrect) setScore((prev) => prev + 1);
+    };
+    const handleNextQuestion = () => setQuestionIndex((prev) => prev + 1);
+
+    const resetGame = () => {
+        setScore(0);
+        setQuestionIndex(0);
+        setUserResponses([]);
     };
 
     // Lifecycle
@@ -73,11 +76,7 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                // Reset game state when fetching new quiz
-                setScore(0);
-                setQuestionIndex(0);
-                setQuestions(null);
-
+                resetGame();
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
             } catch (error) {
@@ -86,7 +85,6 @@ export const GameProvider = ({ children }) => {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [quizType.name]);
 
@@ -96,8 +94,11 @@ export const GameProvider = ({ children }) => {
         quizType,
         currentQuestion,
         currentQuestionChoices,
-        setScore,
-        handleAnswer,
+        isCorrectResponse,
+        isResponded,
+        correctAnswerKey,
+        handleAnswerSubmit,
+        handleNextQuestion,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

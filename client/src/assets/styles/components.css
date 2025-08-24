@@ -1,48 +1,157 @@
 .btn {
     @apply text-white;
 }
+
+.btn.disabled {
+    @apply pointer-events-none;
+}
+
+.btn.disabled:not(.correct) {
+    @apply pointer-events-none opacity-50;
+}
+
+.btn.assembly {
+    @apply bg-assembly;
+}
+
+.btn.basic {
+    @apply bg-basic;
+}
+
+.btn.brainfuck {
+    @apply bg-brainfuck border-[1px] border-white/50;
+}
+
 .btn.c {
     @apply bg-c;
 }
-.btn.csharp {
-    @apply bg-csharp;
+
+.btn.clojure {
+    @apply bg-clojure;
 }
+
+.btn.cobol {
+    @apply bg-cobol border-[1px] border-white/50;
+}
+
 .btn.cpp {
     @apply bg-cpp;
 }
+
+.btn.csharp {
+    @apply bg-csharp;
+}
+
+.btn.csh {
+    @apply bg-csh;
+}
+
 .btn.css {
     @apply bg-css;
 }
+
+
+
 .btn.elixir {
     @apply bg-elixir;
 }
+
+.btn.elm {
+    @apply bg-elm;
+}
+
+.btn.emojicode {
+    @apply bg-emojicode text-black;
+}
+
+.btn.erlang {
+    @apply bg-erlang;
+}
+
+.btn.false {
+    @apply bg-false border-[1px] border-white/50;
+}
+
+.btn.fortran {
+    @apply bg-fortran;
+}
+
+.btn.fsharp {
+    @apply bg-fsharp;
+}
+
 .btn.go {
     @apply bg-go;
 }
+
+.btn.haskell {
+    @apply bg-haskell;
+}
+
+.btn.holyc {
+    @apply bg-holyc;
+}
+
 .btn.html {
     @apply bg-html;
 }
+
 .btn.java {
     @apply bg-java;
 }
+
 .btn.javascript {
     @apply bg-javascript text-black;
 }
+
+.btn.jsfuck {
+    @apply bg-jsfuck text-black;
+}
+
+.btn.lisp {
+    @apply bg-common-lisp;
+}
+
+.btn.objective-c {
+    @apply bg-objective-c;
+}
+
+.btn.omgrofl {
+    @apply bg-omgrofl text-black;
+}
+
+.btn.pascal {
+    @apply bg-pascal text-black;
+}
+
 .btn.php {
     @apply bg-php;
 }
+
 .btn.python {
     @apply bg-python;
 }
+
 .btn.rust {
     @apply bg-rust;
 }
+
+.btn.shakespeare {
+    @apply bg-shakespeare;
+}
+
 .btn.sql {
     @apply bg-sql;
 }
+
 .btn.swift {
     @apply bg-swift;
 }
+
 .btn.typescript {
     @apply bg-typescript;
+}
+
+.language-icon {
+  @apply font-jetbrains !text-[12rem] !font-bold;
 }

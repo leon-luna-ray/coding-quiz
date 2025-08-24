@@ -4,21 +4,19 @@ import { useGameContext } from '@/contexts/GameContext';
 
 const Header = () => {
     const location = useLocation();
-    let score = 0;
-    try {
-        if (location.pathname !== '/') {
-            const gameContext = useGameContext();
-            score = gameContext.score;
-        }
-    } catch (error) {
-        console.error("Error accessing game context:", error);
-    }
+    const { score, quizType } = useGameContext();
 
     return (
         <header className={location.pathname === '/' ? 'hidden' : ''}>
             <div className="container flex items-center justify-between py-[1rem] text-[2rem] text-white font-syne">
-                <Link to='/' className="hover:no-underline">Coding Quiz!</Link>
-                {/* <p className=''>Score: {score}</p> */}
+                <Link to='/' className="hover:no-underline flex gap-[0.5rem] items-center">
+                    <p>CodingQuiz!</p>
+                </Link>
+                {quizType.name && (
+                    <div className="flex flex-col text-[1.5rem]">
+                        <p className='tracking-[0.5px]'>{quizType.name} | Score {score}</p>
+                    </div>
+                )}
             </div>
         </header>
     )
