@@ -62,10 +62,12 @@ export const GameProvider = ({ children }) => {
         return correctAnswer === "true";
     };
 
-    const handleAnswer = (userChoice) => {
+    const handleAnswerSubmit = (userChoice) => {
         if (isCorrect(userChoice, currentQuestion.correct_answers)) {
             setScore(score + 1);
         }
+    };
+    const handleNextQuestion = () => {
         setQuestionIndex(questionIndex + 1);
     };
 
@@ -85,6 +87,8 @@ export const GameProvider = ({ children }) => {
 
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
+
+                console.log('Fetched questions:', data);
             } catch (error) {
                 console.error(error);
             } finally {
@@ -102,7 +106,8 @@ export const GameProvider = ({ children }) => {
         currentQuestion,
         currentQuestionChoices,
         setScore,
-        handleAnswer,
+        handleAnswerSubmit,
+        handleNextQuestion,
     };
 
     return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

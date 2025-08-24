@@ -8,7 +8,7 @@ const AnswerButton = ({ letter, text, index }) => {
   
   return (
     <button 
-      className={`w-full btn flex gap-4 justify-center ${quizType.slug} ${isCorrect !== null ? 'disabled' : ''} ${isThisCorrect ? 'correct' : ''}`} 
+      className={`w-full btn flex gap-4 justify-center ${quizType.slug} ${isCorrect !== null ? '' : 'disabled'} ${isThisCorrect ? 'correct' : ''}`} 
       onClick={() => { handleAnswerSubmit(letter); }}
     >
       <p className='font-[500]'>{capitalizeLastLetter(letter)}:</p>
