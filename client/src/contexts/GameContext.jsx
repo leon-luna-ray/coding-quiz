@@ -23,6 +23,7 @@ export const GameProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [questions, setQuestions] = useState(null);
     const [questionIndex, setQuestionIndex] = useState(0);
+    const [userResponses, setUserResponses] = useState([]);
 
     // Memo
     const quizType = useMemo(() => {
@@ -68,15 +69,19 @@ export const GameProvider = ({ children }) => {
         setQuestionIndex(questionIndex + 1);
     };
 
+    const resetGame = () => {
+        setScore(0);
+        setQuestionIndex(0);
+        setUserResponses([]);
+    };
+
     // Lifecycle
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
                 // Reset game state when fetching new quiz
-                setScore(0);
-                setQuestionIndex(0);
-                setQuestions(null);
+                resetGame();
 
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);

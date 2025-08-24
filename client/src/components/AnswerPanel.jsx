@@ -1,6 +1,7 @@
 import React from 'react';
 import AnswerButton from '@/components/AnswerButton';
 import { useGameContext } from '@/contexts/GameContext';
+import IconNext from '@/components/icons/IconNext';
 
 
 const AnswerPanel = () => {
@@ -13,18 +14,22 @@ const AnswerPanel = () => {
 
     if (text === null) return;
 
-    return <AnswerButton key={index} letter={letter} text={text}  index={index} />;
+    return <AnswerButton key={index} letter={letter} text={text} index={index} />;
   })
 
   // const responseText = isCorrect ? 'Correct!' : 'Incorrect!';
 
   return (
-    <div className="flex flex-col gap-[2rem]">
-      <div className={`flex gap-[2rem] justify-between`}>
-        <h2>Correct</h2>
-        <button className={`btn css px-[1rem]`} onClick={handleNextQuestion}>Continue</button>
-      </div>
+    <div className="flex flex-col gap-[4rem]">
+      <h2 className='text-center'>Correct</h2>
+
       <div className='grid md:grid-cols-2 gap-4'>{buttons}</div>
+      <div className="flex justify-center items-center">
+        <button className={`btn border-[2px] border-white px-[1rem] flex gap-[0.5rem] items-center w-max`} onClick={handleNextQuestion} aria-label="Next question">
+          <p>Next</p>
+          <IconNext />
+        </button>
+      </div>
     </div>
   );
 };
