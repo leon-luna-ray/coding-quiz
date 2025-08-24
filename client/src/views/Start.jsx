@@ -3,27 +3,42 @@ import { Link } from 'react-router-dom';
 
 const Start = () => {
   return (
-    <div className='container flex justify-center items-center h-full md:mt-[8rem]'>
-      <div className='flex flex-col items-center justify-center border h-max p-[1rem] md:py-8 md:px-12'>
+    <div className='flex justify-center items-center h-[calc(100vh-126px)] max-w-[500px] mx-auto'>
+      <div className='flex flex-col gap-y-[1rem] items-center justify-center border h-max p-[1rem] md:py-8 w-full'>
         <div>
-          <h1 className='h3'>Coding Quiz!</h1>
+          <h1 className='h3'>CodingQuiz!</h1>
         </div>
-        <div className='flex-col-1 w-full grid grid-cols-3 gap-4'>
-          <Link className='btn c' to='/quiz/c'>C</Link>
-          <Link className='btn csharp' to='/quiz/csharp'>C#</Link>
-          <Link className='btn cpp' to='/quiz/cpp'>C++</Link>
-          <Link className='btn css' to='/quiz/css'>CSS</Link>
-          <Link className='btn elixir' to='/quiz/elixir'>Elixir</Link>
-          <Link className='btn go' to='/quiz/go'>Go</Link>
-          <Link className='btn html' to='/quiz/html'>HTML</Link>
-          <Link className='btn java' to='/quiz/java'>Java</Link>
-          <Link className='btn secondary javascript' to='/quiz/javascript'>JavaScript</Link>
-          <Link className='btn php' to='/quiz/php'>PHP</Link>
-          <Link className='btn python' to='/quiz/python'>Python</Link>
-          <Link className='btn rust' to='/quiz/rust'>Rust</Link>
-          <Link className='btn sql' to='/quiz/sql'>SQL</Link>
-          <Link className='btn swift' to='/quiz/swift'>Swift</Link>
-          <Link className='btn typescript' to='/quiz/typescript'>TypeScript</Link>
+        <div className="flex flex-col w-full">
+
+          <h2 className='label-text !leading-[300%] text-center'>Core</h2>
+          <div className='w-full grid grid-cols-3 gap-4'>
+            <Link className='btn c' to='/quiz/c'>C</Link>
+            <Link className='btn csharp' to='/quiz/csharp'>C#</Link>
+            <Link className='btn cpp' to='/quiz/cpp'>C++</Link>
+            <Link className='btn css' to='/quiz/css'>CSS</Link>
+            <Link className='btn elixir' to='/quiz/elixir'>Elixir</Link>
+            <Link className='btn go' to='/quiz/go'>Go</Link>
+            <Link className='btn html' to='/quiz/html'>HTML</Link>
+            <Link className='btn java' to='/quiz/java'>Java</Link>
+            <Link className='btn secondary javascript' to='/quiz/javascript'>JavaScript</Link>
+            <Link className='btn php' to='/quiz/php'>PHP</Link>
+            <Link className='btn python' to='/quiz/python'>Python</Link>
+            <Link className='btn rust' to='/quiz/rust'>Rust</Link>
+            <Link className='btn sql' to='/quiz/sql'>SQL</Link>
+            <Link className='btn swift' to='/quiz/swift'>Swift</Link>
+            <Link className='btn typescript' to='/quiz/typescript'>TypeScript</Link>
+          </div>
+        </div>
+        <div className="flex flex-col w-full">
+          <h2 className='label-text !leading-[300%] text-center'>Vintage</h2>
+          <div className='w-full grid grid-cols-3 gap-4'>
+            <Link className='btn assembly' to='/quiz/assembly'>Assembly</Link>
+            <Link className='btn basic' to='/quiz/basic'>BASIC</Link>
+            <Link className='btn cobol' to='/quiz/cobol'>COBOL</Link>
+            <Link className='btn fortran' to='/quiz/fortran'>FORTRAN</Link>
+            <Link className='btn lisp' to='/quiz/common-lisp'>Lisp</Link>
+            <Link className='btn pascal' to='/quiz/pascal'>Pascal</Link>
+          </div>
         </div>
       </div>
 
@@ -98,7 +113,7 @@ const Start = () => {
           </div>
         </div>
       </div> */}
-      
+
     </div >
   );
 };

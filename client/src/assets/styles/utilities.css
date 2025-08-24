@@ -66,5 +66,5 @@
 }
 
 @utility label-text {
-  @apply !text-[1rem] font-medium uppercase leading-[130%] !font-space;
+  @apply !text-[1rem] font-medium uppercase !font-space;
 }
