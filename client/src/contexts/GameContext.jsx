@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, useMemo, use } from 'react';
+import React, { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { fetchQuiz } from '@/lib/api';
 
@@ -29,72 +29,41 @@ export const GameProvider = ({ children }) => {
     const quizType = useMemo(() => {
         const pathSegments = location.pathname.split('/');
         const slug = pathSegments[2] || 'unknown'; // /quiz/:slug
-
         return {
             name: formatQuizName(slug),
-            slug: slug
+            slug
         };
     }, [location.pathname]);
 
-    const currentQuestion = useMemo(
-        () => {
-            if (questions) {
-                return questions[questionIndex];
-            }
-            return null;
-        },
-        [questions, questionIndex]
-    );
+    const currentQuestion = questions ? questions[questionIndex] : null;
 
-    const currentQuestionChoices = useMemo(
-        () => {
-            if (currentQuestion) {
-                return Object.keys(currentQuestion.answers).map((key) => [key, currentQuestion.answers[key]]);
-            }
-            return null;
-        },
-        [currentQuestion]
-    );
+    const currentQuestionChoices = currentQuestion
+        ? Object.entries(currentQuestion.answers)
+        : null;
 
-    const isCorrectResponse = useMemo(() => {
-        // Only check if user has responded to this question
-        const userResponse = userResponses[questionIndex];
-        if (!userResponse) return null;
-        console.log(userResponse);
-        return userResponse.isCorrect;
-    }, [questionIndex, userResponses]);
-
-    const isResponded = useMemo(() => {
-        const userResponse = userResponses[questionIndex];
-        return userResponse !== undefined;
-    }, [questionIndex, userResponses]);
+    const userResponse = userResponses[questionIndex];
+    const isCorrectResponse = userResponse ? userResponse.isCorrect : null;
+    const isResponded = userResponse !== undefined;
 
     // Methods
-    const getCorrectAnswerKey = (answers) => {
-        return Object.keys(answers).find(key => answers[key] === "true");
-    };
+    const getCorrectAnswerKey = (answers) => Object.keys(answers).find(key => answers[key] === "true");
     const correctAnswerKey = currentQuestion ? getCorrectAnswerKey(currentQuestion.correct_answers) : null;
 
     const handleAnswerSubmit = (userChoice) => {
+        if (!currentQuestion) return;
         const correctKey = getCorrectAnswerKey(currentQuestion.correct_answers);
         const correctAnswer = currentQuestion.answers[correctKey];
         const isCorrect = correctKey === userChoice;
-
         const response = {
             question: currentQuestion,
             userChoice: currentQuestion.answers[userChoice],
             correctAnswer,
             isCorrect,
         };
-        setUserResponses([...userResponses, response]);
-
-        if (isCorrect) {
-            setScore(score + 1);
-        }
+        setUserResponses((prev) => [...prev, response]);
+        if (isCorrect) setScore((prev) => prev + 1);
     };
-    const handleNextQuestion = () => {
-        setQuestionIndex(questionIndex + 1);
-    };
+    const handleNextQuestion = () => setQuestionIndex((prev) => prev + 1);
 
     const resetGame = () => {
         setScore(0);
@@ -107,20 +76,15 @@ export const GameProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                // Reset game state when fetching new quiz
                 resetGame();
-
                 const data = await fetchQuiz(10, 'code', 'easy', quizType.name);
                 setQuestions(data);
-
-                console.log('Fetched questions:', data);
             } catch (error) {
                 console.error(error);
             } finally {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [quizType.name]);
 
@@ -133,7 +97,6 @@ export const GameProvider = ({ children }) => {
         isCorrectResponse,
         isResponded,
         correctAnswerKey,
-        setScore,
         handleAnswerSubmit,
         handleNextQuestion,
     };
