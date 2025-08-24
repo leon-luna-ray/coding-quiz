@@ -1,3 +1,5 @@
+import { sampleResponse } from "./utls/sample";
+
 export default {
   async fetch(request, env, ctx) {
     const allowedOriginsString = env.ALLOWED_ORIGINS || 'http://localhost:5173';
@@ -27,6 +29,13 @@ export default {
     const limit = url.searchParams.get('limit') || '10';
     const difficulty = url.searchParams.get('difficulty') || '';
     const quizType = url.searchParams.get('quizType') || null;
+    const mock = true;
+
+    if (mock) {
+      return new Response(JSON.stringify(sampleResponse), {
+        headers: corsHeaders,
+      });
+    }
 
     if (!quizType || quizType === 'defaultType' || quizType === 'DefaultType') {
       return new Response('Quiz type is required', {
@@ -60,10 +69,10 @@ export default {
             },
             "multiple_correct_answers": "false",
             "correct_answers": {
-                "answer_a_correct": "true",
-                "answer_b_correct": "false",
-                "answer_c_correct": "false",
-                "answer_d_correct": "false"
+                "answer_a": "true",
+                "answer_b": "false",
+                "answer_c": "false",
+                "answer_d": "false"
             }
         }
     `;
@@ -92,7 +101,7 @@ export default {
       const text = geminiData.candidates[0].content.parts[0].text;
       const jsonText = text.replace(/```json/g, '').replace(/```/g, '').trim();
 
-      return new Response(jsonText, { 
+      return new Response(jsonText, {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': isAllowedOrigin ? origin : null,

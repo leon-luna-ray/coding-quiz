@@ -55,18 +55,34 @@ export const GameProvider = ({ children }) => {
         },
         [currentQuestion]
     );
-
+    const getCorrectAnswerKey = (answers) => {
+        if(!answers?.length) return null;
+        return Object.keys(answers).find(key => answers[key] === "true");
+    };
     // Methods
     const isCorrect = (userChoice, answers) => {
-        const correctAnswer = answers[`${userChoice}_correct`];
+        const correctAnswer = answers[`${userChoice}`];
         return correctAnswer === "true";
     };
 
-    const handleAnswerSubmit = (userChoice) => {
-        if (isCorrect(userChoice, currentQuestion.correct_answers)) {
-            setScore(score + 1);
-        }
+const handleAnswerSubmit = (userChoice) => {
+    const correctKey = getCorrectAnswerKey(currentQuestion.correct_answers);
+    const correctAnswerValue = currentQuestion.answers[correctKey];
+    console.log('Correct answer:', correctKey, correctAnswerValue);
+    const response = {
+        question: currentQuestion,
+        userChoice: currentQuestion.answers[userChoice],
+        isCorrect: isCorrect(userChoice, currentQuestion.correct_answers),
+        correctAnswer: correctAnswerValue,
     };
+    console.log('User response:', response);
+
+    setUserResponses([...userResponses, response]);
+
+    if (isCorrect(userChoice, currentQuestion.correct_answers)) {
+        setScore(score + 1);
+    }
+};
     const handleNextQuestion = () => {
         setQuestionIndex(questionIndex + 1);
     };
