@@ -64,10 +64,16 @@ export const GameProvider = ({ children }) => {
         return userResponse.isCorrect;
     }, [questionIndex, userResponses]);
 
+    const isResponded = useMemo(() => {
+        const userResponse = userResponses[questionIndex];
+        return userResponse !== undefined;
+    }, [questionIndex, userResponses]);
+
     // Methods
     const getCorrectAnswerKey = (answers) => {
         return Object.keys(answers).find(key => answers[key] === "true");
     };
+    const correctAnswerKey = currentQuestion ? getCorrectAnswerKey(currentQuestion.correct_answers) : null;
 
     const handleAnswerSubmit = (userChoice) => {
         const correctKey = getCorrectAnswerKey(currentQuestion.correct_answers);
@@ -125,6 +131,8 @@ export const GameProvider = ({ children }) => {
         currentQuestion,
         currentQuestionChoices,
         isCorrectResponse,
+        isResponded,
+        correctAnswerKey,
         setScore,
         handleAnswerSubmit,
         handleNextQuestion,
